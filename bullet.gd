@@ -10,3 +10,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	position += transform.y * bullet_speed * delta
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
