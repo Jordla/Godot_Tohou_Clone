@@ -26,11 +26,15 @@ func is_slow_mode():
 
 func shoot():
 	var bullet = Bullet.instantiate()
+	var bullet2 = Bullet.instantiate()
 	add_child(bullet)
+	add_child(bullet2)
 	bullet.transform = $Marker2D.transform
+	bullet.position.x += 5.0
+	bullet2.transform = $Marker2D.transform
+	bullet2.position.x -= 5.0
 	
-func _on_bullet_timer_timeout():
-	shoot()
+	
 	
 func _process(delta):
 	if Input.is_action_pressed("shoot"):
@@ -45,6 +49,8 @@ func _process(delta):
 			shoot_timer = 0
 	if Input.is_action_just_released("shoot"):
 		is_shooting = false
+	
+	global_position = global_position.clamp(Vector2.ZERO, get_viewport_rect().size)
 
 
 func _physics_process(delta):

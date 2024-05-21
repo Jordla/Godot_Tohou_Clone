@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxtqg33xpqewq"]
+
+[ext_resource type="Texture2D" uid="uid://cow1neb144thb" path="res://RedEnemy.png" id="1_uht7g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r73v6"]
+radius = 18.0
+height = 40.0
+
+[node name="RedEnemy" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.65625, 0.65625)
+texture = ExtResource("1_uht7g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_r73v6")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
