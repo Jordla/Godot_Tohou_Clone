@@ -1,10 +1,21 @@
 extends CanvasLayer
 
+@onready var linear_button = $BulletType/LinearButton
+@onready var sine_button = $BulletType/SineButton
+@onready var parabolic_button = $BulletType/ParabolicButton
+
+@onready var linear_ui = $LinearUI
+@onready var sine_ui = $SineUI
+@onready var parabolic_ui = $ParabolicUI
+var bullet_types : Array = []
+
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	linear_button.grab_focus()
+	bullet_types = [sine_ui, linear_ui, parabolic_ui]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,3 +33,21 @@ func _on_frequency_button_value_changed(value):
 
 func _on_rotate_button_pressed():
 	Events.rotate_changed.emit()
+
+
+func _on_linear_button_pressed():
+	for bullet_type in bullet_types: 
+		bullet_type.hide()
+	linear_ui.show()
+	
+func _on_sine_button_pressed():
+	for bullet_type in bullet_types: 
+		bullet_type.hide()
+	sine_ui.show()
+
+
+func _on_parabolic_button_pressed():
+	for bullet_type in bullet_types: 
+		bullet_type.hide()
+	parabolic_ui.show()
+	

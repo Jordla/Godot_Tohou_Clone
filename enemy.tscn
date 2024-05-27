@@ -2,14 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://jsjs3kx1bm5o" path="res://mongus.png" id="1_hyswt"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_t782f"]
-[ext_resource type="PackedScene" uid="uid://crq1fyitp7aep" path="res://bullet1.tscn" id="2_gauue"]
+[ext_resource type="PackedScene" uid="uid://bxojdqx1m57mv" path="res://linear_bullet.tscn" id="2_gn7x7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2uii"]
 size = Vector2(98, 130)
 
 [node name="Enemy" type="Area2D"]
 script = ExtResource("1_t782f")
-Bullet = ExtResource("2_gauue")
+Bullet = ExtResource("2_gn7x7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4.76837e-07, -2.38419e-07)

@@ -2,12 +2,14 @@ extends Node2D
 
 @onready var enemy = $Enemy
 @onready var ui = $UI
+#var ui = preload("res://ui.tscn")
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#await get_tree().create_timer(5.0).timeout
+	#add_child(ui.instantiate())
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

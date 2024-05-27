@@ -34,8 +34,8 @@ func rotate_enemy():
 	
 func shoot():
 	var b = Bullet.instantiate()
-	b.frequency = temp_frequency
-	b.amplitude = temp_amplitude
+	#b.frequency = temp_frequency
+	#b.amplitude = temp_amplitude
 	b.transform = $Marker2D.global_transform
 	get_tree().get_root().get_node("World").add_child(b)
 	

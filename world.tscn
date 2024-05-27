@@ -7,7 +7,8 @@
 [node name="World" type="Node2D"]
 script = ExtResource("1_2hfjw")
 
-[node name="Enemy" parent="." instance=ExtResource("1_3gneb")]
-position = Vector2(589, 330)
-
 [node name="UI" parent="." instance=ExtResource("3_14bcq")]
+
+[node name="Enemy" parent="." instance=ExtResource("1_3gneb")]
+position = Vector2(512, 312)
+scale = Vector2(0.75, 0.75)
