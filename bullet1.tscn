@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://crq1fyitp7aep"]
+
+[ext_resource type="PackedScene" uid="uid://dvyn1aqa6xkvi" path="res://bullet.tscn" id="1_nu330"]
+[ext_resource type="Texture2D" uid="uid://ca1a8cr7cpsa2" path="res://TohouBulletSpriteSheet.png" id="2_axw1k"]
+
+[node name="Bullet" groups=["Bullet1"] instance=ExtResource("1_nu330")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_axw1k")
+region_rect = Rect2(86, 55, 14, 14)

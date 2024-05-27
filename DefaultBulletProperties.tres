@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BulletProperties" load_steps=2 format=3 uid="uid://swrnk5q71tnw"]
+
+[ext_resource type="Script" path="res://BulletProperties.gd" id="1_o3mbu"]
+
+[resource]
+script = ExtResource("1_o3mbu")
+bullet_size = 1.0
+bullet_speed = 750.0
+bullet_life_time = 1.0

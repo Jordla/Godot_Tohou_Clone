@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://duu2defrp2kla"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_whqeh"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_kugig"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_whqeh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.85
+anchor_top = 0.356
+anchor_right = 0.975
+anchor_bottom = 0.933
+offset_top = -0.320007
+offset_bottom = 0.23999
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Amplitude"
+
+[node name="AmplitudeButton" type="HSlider" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 25.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Frequency"
+
+[node name="FrequencyButton" type="HSlider" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+max_value = 25.0
+
+[node name="RotateButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Rotate"
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -177.0
+offset_top = 116.0
+offset_right = -76.0
+offset_bottom = 148.0
+grow_horizontal = 0
+
+[node name="Button" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_kugig")
+text = "Linear"
+
+[node name="Button2" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_kugig")
+text = "Sine"
+
+[node name="Button3" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_kugig")
+text = "Parabolic"
+
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer/AmplitudeButton" to="." method="_on_amplitude_button_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer2/FrequencyButton" to="." method="_on_frequency_button_value_changed"]
+[connection signal="pressed" from="VBoxContainer/RotateButton" to="." method="_on_rotate_button_pressed"]

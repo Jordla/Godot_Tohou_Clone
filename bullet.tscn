@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvyn1aqa6xkvi"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_d13ns"]
+[ext_resource type="Resource" uid="uid://swrnk5q71tnw" path="res://DefaultBulletProperties.tres" id="2_68i5u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tgas6"]
+radius = 11.0
+height = 22.0
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_d13ns")
+bullet_properties = ExtResource("2_68i5u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.42857, 1.42857)
+region_enabled = true
+region_rect = Rect2(118, 55, 14, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_tgas6")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

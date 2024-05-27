@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4jg3gt106gfs"]
+
+[ext_resource type="Texture2D" uid="uid://jsjs3kx1bm5o" path="res://mongus.png" id="1_hyswt"]
+[ext_resource type="Script" path="res://enemy.gd" id="1_t782f"]
+[ext_resource type="PackedScene" uid="uid://crq1fyitp7aep" path="res://bullet1.tscn" id="2_gauue"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2uii"]
+size = Vector2(98, 130)
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_t782f")
+Bullet = ExtResource("2_gauue")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, -2.38419e-07)
+scale = Vector2(0.480392, 0.516129)
+texture = ExtResource("1_hyswt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_c2uii")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 448, 0)
+width = 4.0
+default_color = Color(0, 0, 1, 1)
