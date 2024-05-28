@@ -4,6 +4,7 @@ class_name Enemy
 @onready var marker_2d = $Marker2D
 @export var LinearBullet : PackedScene
 @export var SineBullet : PackedScene
+@export var ParabolicBullet : PackedScene
 @onready var enemy = $"."
 @onready var line_2d = $Line2D
 
@@ -30,7 +31,7 @@ func select_sine():
 	current_bullet = SineBullet
 	
 func select_parabolic():
-	pass
+	current_bullet = ParabolicBullet
 
 func rotate_enemy():
 	rotated += 10.0

@@ -2,10 +2,21 @@ extends Area2D
 class_name Bullet
 @onready var sprite_2d = $Sprite2D
 
+var time : float = 0.0
+var velocity : Vector2
 var speed : float = 200
 
 func _physics_process(delta):
-	move_bullet(delta)
+	pass
+
+func get_x_velocity(delta):
+	return speed * delta
+
+func get_y_velocity(delta):
+	pass
+
+func get_velocity(delta):
+	pass
 
 func move_bullet(delta):
 	position += transform.x * speed * delta

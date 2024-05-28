@@ -2,8 +2,7 @@ extends Bullet
 
 var frequency : float = 4.0
 var amplitude : float = 25.0
-var time : float = 0.0
-var velocity : Vector2
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
