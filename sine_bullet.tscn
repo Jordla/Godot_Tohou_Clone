@@ -8,6 +8,6 @@
 script = ExtResource("2_tf6rc")
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(1, 1)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_oonlx")
-region_rect = Rect2(202, 309, 24, 26)
+region_rect = Rect2(214, 55, 14, 14)

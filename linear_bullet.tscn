@@ -1,13 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxojdqx1m57mv"]
+[gd_scene load_steps=7 format=3 uid="uid://bxojdqx1m57mv"]
 
 [ext_resource type="PackedScene" uid="uid://dvyn1aqa6xkvi" path="res://bullet.tscn" id="1_08chh"]
 [ext_resource type="Script" path="res://linear_bullet.gd" id="2_vtnf7"]
 [ext_resource type="Texture2D" uid="uid://ca1a8cr7cpsa2" path="res://TohouBulletSpriteSheet.png" id="2_ykuvw"]
 
+[sub_resource type="Animation" id="Animation_e6r6b"]
+resource_name = "glow_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 0.241484, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.4, 1.4), Vector2(1.5, 1.5), Vector2(1.42, 1.42), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_w2ny4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.4, 1.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vkhgj"]
+_data = {
+"RESET": SubResource("Animation_w2ny4"),
+"glow_1": SubResource("Animation_e6r6b")
+}
+
 [node name="LinearBullet" instance=ExtResource("1_08chh")]
 script = ExtResource("2_vtnf7")
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(1, 1)
+scale = Vector2(1.4, 1.4)
 texture = ExtResource("2_ykuvw")
-region_rect = Rect2(137, 310, 25, 24)
+hframes = 2
+region_rect = Rect2(118, 55, 31, 15)
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_vkhgj")
+}

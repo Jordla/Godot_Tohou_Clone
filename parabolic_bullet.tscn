@@ -8,5 +8,6 @@
 script = ExtResource("2_r4btg")
 
 [node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_7jims")
-region_rect = Rect2(150, 55, 14, 14)
+region_rect = Rect2(166, 55, 14, 14)

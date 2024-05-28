@@ -133,8 +133,43 @@ max_value = 20.0
 
 [node name="ParabolicUI" type="VBoxContainer" parent="."]
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1080.0
+offset_top = 200.0
+offset_right = 1248.0
+offset_bottom = 469.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParabolicUI"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParabolicUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ParabolicUI/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Coffificent a value"
+
+[node name="HSlider" type="HSlider" parent="ParabolicUI/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ParabolicUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ParabolicUI/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Coefficient b value"
+
+[node name="HSlider" type="HSlider" parent="ParabolicUI/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ParabolicUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ParabolicUI/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Constant c value"
+
+[node name="HSlider" type="HSlider" parent="ParabolicUI/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
 
 [connection signal="pressed" from="BulletType/LinearButton" to="." method="_on_linear_button_pressed"]
 [connection signal="pressed" from="BulletType/SineButton" to="." method="_on_sine_button_pressed"]
