@@ -16,6 +16,7 @@ func _ready():
 	ui.speed_changed.connect(set_speed)
 	ui.fire_rate_changed.connect(set_fire_rate)
 	enemy.shoot.connect(fire_bullet)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	pass
@@ -32,7 +33,7 @@ func set_speed(speed):
 func set_fire_rate(fire_rate):
 	enemy.wait_time = fire_rate
 
-# Should create a bullet on enemy
+# Create a bullet instance
 func fire_bullet(Bullet : PackedScene, location : Transform2D):
 	var bullet = Bullet.instantiate()
 	bullet.transform = location

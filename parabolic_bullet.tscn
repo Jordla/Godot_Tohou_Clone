@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://tfyfq076auly"]
+
+[ext_resource type="PackedScene" uid="uid://dvyn1aqa6xkvi" path="res://bullet.tscn" id="1_yrhl4"]
+[ext_resource type="Texture2D" uid="uid://ca1a8cr7cpsa2" path="res://TohouBulletSpriteSheet.png" id="2_7jims"]
+[ext_resource type="Script" path="res://parabolic_bullet.gd" id="2_r4btg"]
+
+[node name="ParabolicBullet" instance=ExtResource("1_yrhl4")]
+script = ExtResource("2_r4btg")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_7jims")
+region_rect = Rect2(150, 55, 14, 14)

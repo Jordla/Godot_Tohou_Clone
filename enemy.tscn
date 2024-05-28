@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c4jg3gt106gfs"]
 
-[ext_resource type="Texture2D" uid="uid://jsjs3kx1bm5o" path="res://mongus.png" id="1_hyswt"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_t782f"]
 [ext_resource type="PackedScene" uid="uid://bxojdqx1m57mv" path="res://linear_bullet.tscn" id="2_gn7x7"]
 [ext_resource type="PackedScene" uid="uid://b2utkh4276ga0" path="res://sine_bullet.tscn" id="3_13u6e"]
+[ext_resource type="Texture2D" uid="uid://0xcb2n54g7jd" path="res://Mungus2.webp" id="4_y74i1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2uii"]
 size = Vector2(98, 130)
@@ -14,12 +14,12 @@ LinearBullet = ExtResource("2_gn7x7")
 SineBullet = ExtResource("3_13u6e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(4.76837e-07, -2.38419e-07)
-scale = Vector2(0.480392, 0.516129)
-texture = ExtResource("1_hyswt")
+position = Vector2(-16, 24)
+scale = Vector2(0.294741, 0.324455)
+texture = ExtResource("4_y74i1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -1)
+position = Vector2(-16, 24)
 shape = SubResource("RectangleShape2D_c2uii")
 
 [node name="Marker2D" type="Marker2D" parent="."]

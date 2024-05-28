@@ -50,7 +50,6 @@ button_group = SubResource("ButtonGroup_kugig")
 text = "Parabolic"
 
 [node name="LinearUI" type="VBoxContainer" parent="."]
-visible = false
 anchors_preset = -1
 anchor_left = 0.844
 anchor_top = 0.278
@@ -96,6 +95,7 @@ layout_mode = 2
 text = "Rotate"
 
 [node name="SineUI" type="VBoxContainer" parent="."]
+visible = false
 anchors_preset = -1
 anchor_left = 0.844
 anchor_top = 0.278
@@ -117,7 +117,8 @@ text = "Amplitude"
 
 [node name="AmplitudeSlider" type="HSlider" parent="SineUI/AmplitudeVbox"]
 layout_mode = 2
-max_value = 25.0
+max_value = 5.0
+step = 0.5
 
 [node name="FrequencyVbox" type="VBoxContainer" parent="SineUI"]
 layout_mode = 2
@@ -128,7 +129,7 @@ text = "Frequency"
 
 [node name="FrequencySlider" type="HSlider" parent="SineUI/FrequencyVbox"]
 layout_mode = 2
-max_value = 25.0
+max_value = 20.0
 
 [node name="ParabolicUI" type="VBoxContainer" parent="."]
 visible = false

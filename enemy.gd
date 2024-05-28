@@ -1,4 +1,5 @@
 extends Area2D
+class_name Enemy
 
 @onready var marker_2d = $Marker2D
 @export var LinearBullet : PackedScene
@@ -6,14 +7,10 @@ extends Area2D
 @onready var enemy = $"."
 @onready var line_2d = $Line2D
 
-var wait_time = 1.0 # In msec
-var time = 0.0
-
-var rotated = 0.0
-
-var fire = true
-
-var current_bullet = null
+var wait_time : float = 1.0 # In msec
+var time : float = 0.0
+var rotated : float = 0.0
+var current_bullet : PackedScene = null
 
 
 signal shoot(Bullet : PackedScene, location : Transform2D)
@@ -41,20 +38,6 @@ func rotate_enemy():
 
 func get_muzzle_position():
 	return $Marker2D.global_transform
-
-
-#func shoot():
-	#var b = LinearBullet.instantiate()
-	##b.frequency = temp_frequency
-	##b.amplitude = temp_amplitude
-	#b.transform = $Marker2D.global_transform
-	#get_tree().get_root().get_node("World").add_child(b)
-	#
-	#fire = false
-	##timer.start()
-	
-#func _on_timer_timeout():
-	#fire = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
