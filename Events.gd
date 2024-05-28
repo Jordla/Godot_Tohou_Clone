@@ -1,5 +1,8 @@
 extends Node
 
-signal amplitude_changed(new_amplitude)
-signal frequency_changed(new_frequency)
-signal rotate_changed()
+signal linear_bullet_selected()
+signal sine_bullet_selected()
+signal parabolic_bullet_selected()
+
+var bullet_array = ["linear", "sine", "parabolic"]
+var current_bullet = bullet_array[0]

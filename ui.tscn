@@ -50,6 +50,7 @@ button_group = SubResource("ButtonGroup_kugig")
 text = "Parabolic"
 
 [node name="LinearUI" type="VBoxContainer" parent="."]
+visible = false
 anchors_preset = -1
 anchor_left = 0.844
 anchor_top = 0.278
@@ -61,33 +62,40 @@ offset_bottom = 3.12
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LinearUI"]
+[node name="SpeedVbox" type="VBoxContainer" parent="LinearUI"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="LinearUI/VBoxContainer"]
+[node name="SpeedLabel" type="Label" parent="LinearUI/SpeedVbox"]
 layout_mode = 2
 text = "Speed
 "
 
-[node name="HSlider" type="HSlider" parent="LinearUI/VBoxContainer"]
+[node name="SpeedSlider" type="HSlider" parent="LinearUI/SpeedVbox"]
+layout_mode = 2
+min_value = 100.0
+max_value = 1000.0
+step = 50.0
+value = 100.0
+
+[node name="FireRateVbox" type="VBoxContainer" parent="LinearUI"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="LinearUI"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="LinearUI/VBoxContainer2"]
+[node name="FireRateLabel" type="Label" parent="LinearUI/FireRateVbox"]
 layout_mode = 2
 text = "Fire rate"
 
-[node name="HSlider" type="HSlider" parent="LinearUI/VBoxContainer2"]
+[node name="FireRateSlider" type="HSlider" parent="LinearUI/FireRateVbox"]
 layout_mode = 2
+min_value = 0.009
+max_value = 1.0
+step = 0.001
+value = 0.999
 
 [node name="RotateButton" type="Button" parent="LinearUI"]
 layout_mode = 2
 text = "Rotate"
 
 [node name="SineUI" type="VBoxContainer" parent="."]
-visible = false
 anchors_preset = -1
 anchor_left = 0.844
 anchor_top = 0.278
@@ -100,25 +108,25 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SineUI"]
+[node name="AmplitudeVbox" type="VBoxContainer" parent="SineUI"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SineUI/VBoxContainer"]
+[node name="AmplitudeLabel" type="Label" parent="SineUI/AmplitudeVbox"]
 layout_mode = 2
 text = "Amplitude"
 
-[node name="AmplitudeButton" type="HSlider" parent="SineUI/VBoxContainer"]
+[node name="AmplitudeSlider" type="HSlider" parent="SineUI/AmplitudeVbox"]
 layout_mode = 2
 max_value = 25.0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="SineUI"]
+[node name="FrequencyVbox" type="VBoxContainer" parent="SineUI"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="SineUI/VBoxContainer2"]
+[node name="FrequencyLabel" type="Label" parent="SineUI/FrequencyVbox"]
 layout_mode = 2
 text = "Frequency"
 
-[node name="FrequencyButton" type="HSlider" parent="SineUI/VBoxContainer2"]
+[node name="FrequencySlider" type="HSlider" parent="SineUI/FrequencyVbox"]
 layout_mode = 2
 max_value = 25.0
 
@@ -130,6 +138,8 @@ offset_bottom = 40.0
 [connection signal="pressed" from="BulletType/LinearButton" to="." method="_on_linear_button_pressed"]
 [connection signal="pressed" from="BulletType/SineButton" to="." method="_on_sine_button_pressed"]
 [connection signal="pressed" from="BulletType/ParabolicButton" to="." method="_on_parabolic_button_pressed"]
+[connection signal="value_changed" from="LinearUI/SpeedVbox/SpeedSlider" to="." method="_on_speed_slider_value_changed"]
+[connection signal="value_changed" from="LinearUI/FireRateVbox/FireRateSlider" to="." method="_on_fire_rate_slider_value_changed"]
 [connection signal="pressed" from="LinearUI/RotateButton" to="." method="_on_rotate_button_pressed"]
-[connection signal="value_changed" from="SineUI/VBoxContainer/AmplitudeButton" to="." method="_on_amplitude_button_value_changed"]
-[connection signal="value_changed" from="SineUI/VBoxContainer2/FrequencyButton" to="." method="_on_frequency_button_value_changed"]
+[connection signal="value_changed" from="SineUI/AmplitudeVbox/AmplitudeSlider" to="." method="_on_amplitude_slider_value_changed"]
+[connection signal="value_changed" from="SineUI/FrequencyVbox/FrequencySlider" to="." method="_on_frequency_slider_value_changed"]

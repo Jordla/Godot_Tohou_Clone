@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjhf7nuonw3qf"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_2hfjw"]
+[ext_resource type="PackedScene" uid="uid://c4jg3gt106gfs" path="res://enemy.tscn" id="1_3gneb"]
+[ext_resource type="PackedScene" uid="uid://duu2defrp2kla" path="res://ui.tscn" id="3_14bcq"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_2hfjw")
+
+[node name="UI" parent="." instance=ExtResource("3_14bcq")]
+
+[node name="Enemy" parent="." instance=ExtResource("1_3gneb")]
+position = Vector2(512, 312)
+scale = Vector2(0.75, 0.75)

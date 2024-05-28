@@ -2,7 +2,7 @@ extends Area2D
 class_name Bullet
 
 
-@export var bullet_properties : BulletProperties
+var speed : float = 200
 
 func _physics_process(delta):
 	# print(position.x)
@@ -12,14 +12,13 @@ func _physics_process(delta):
 	
 
 func move_bullet(delta):
-	position += transform.x * bullet_properties.bullet_speed * delta # What is transform.x
+	position += transform.x * speed * delta # What is transform.x
 	
 
 func move_bullet_deccelerate(delta):
 	pass
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	print("end")
 	queue_free()
 	
 

@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4jg3gt106gfs"]
+[gd_scene load_steps=6 format=3 uid="uid://c4jg3gt106gfs"]
 
 [ext_resource type="Texture2D" uid="uid://jsjs3kx1bm5o" path="res://mongus.png" id="1_hyswt"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_t782f"]
 [ext_resource type="PackedScene" uid="uid://bxojdqx1m57mv" path="res://linear_bullet.tscn" id="2_gn7x7"]
+[ext_resource type="PackedScene" uid="uid://b2utkh4276ga0" path="res://sine_bullet.tscn" id="3_13u6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2uii"]
 size = Vector2(98, 130)
 
 [node name="Enemy" type="Area2D"]
 script = ExtResource("1_t782f")
-Bullet = ExtResource("2_gn7x7")
+LinearBullet = ExtResource("2_gn7x7")
+SineBullet = ExtResource("3_13u6e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4.76837e-07, -2.38419e-07)

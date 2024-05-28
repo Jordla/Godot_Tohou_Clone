@@ -6,7 +6,6 @@
 
 [node name="SineBullet" instance=ExtResource("1_xt01x")]
 script = ExtResource("2_tf6rc")
-bullet_properties = null
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(1, 1)
