@@ -22,28 +22,40 @@ metadata/_edit_lock_ = true
 anchors_preset = -1
 anchor_left = 0.825
 anchor_top = 0.089
-anchor_right = 0.987
+anchor_right = 0.994
 anchor_bottom = 0.178
 offset_top = -0.0800018
-offset_right = 0.639893
+offset_right = -0.320068
 offset_bottom = -0.160004
 grow_horizontal = 0
-metadata/_edit_lock_ = true
+theme_override_constants/separation = 15
 
-[node name="LinearButton" type="Button" parent="BulletType"]
+[node name="CenterContainer" type="CenterContainer" parent="BulletType"]
+layout_mode = 2
+
+[node name="LinearButton" type="Button" parent="BulletType/CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_kugig")
 text = "Linear"
 
-[node name="SineButton" type="Button" parent="BulletType"]
+[node name="CenterContainer2" type="CenterContainer" parent="BulletType"]
+layout_mode = 2
+
+[node name="SineButton" type="Button" parent="BulletType/CenterContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_kugig")
 text = "Sine"
 
-[node name="ParabolicButton" type="Button" parent="BulletType"]
+[node name="CenterContainer3" type="CenterContainer" parent="BulletType"]
+layout_mode = 2
+
+[node name="ParabolicButton" type="Button" parent="BulletType/CenterContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_kugig")
@@ -138,44 +150,92 @@ offset_top = 200.0
 offset_right = 1248.0
 offset_bottom = 469.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ParabolicUI"]
+[node name="CoeffAVbox" type="VBoxContainer" parent="ParabolicUI"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ParabolicUI/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ParabolicUI/VBoxContainer/VBoxContainer"]
+[node name="CoeffALabel" type="Label" parent="ParabolicUI/CoeffAVbox"]
 layout_mode = 2
 text = "Coffificent a value"
 
-[node name="HSlider" type="HSlider" parent="ParabolicUI/VBoxContainer/VBoxContainer"]
+[node name="CoeffASlider" type="HSlider" parent="ParabolicUI/CoeffAVbox"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ParabolicUI/VBoxContainer"]
+[node name="CoeffBVbox" type="VBoxContainer" parent="ParabolicUI"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ParabolicUI/VBoxContainer/VBoxContainer2"]
+[node name="CoeffBLabel" type="Label" parent="ParabolicUI/CoeffBVbox"]
 layout_mode = 2
 text = "Coefficient b value"
 
-[node name="HSlider" type="HSlider" parent="ParabolicUI/VBoxContainer/VBoxContainer2"]
+[node name="CoeffBSlider" type="HSlider" parent="ParabolicUI/CoeffBVbox"]
 layout_mode = 2
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="ParabolicUI/VBoxContainer"]
+[node name="ConstCVbox" type="VBoxContainer" parent="ParabolicUI"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ParabolicUI/VBoxContainer/VBoxContainer3"]
+[node name="ConstCLabel" type="Label" parent="ParabolicUI/ConstCVbox"]
 layout_mode = 2
 text = "Constant c value"
 
-[node name="HSlider" type="HSlider" parent="ParabolicUI/VBoxContainer/VBoxContainer3"]
+[node name="ConstCSlider" type="HSlider" parent="ParabolicUI/ConstCVbox"]
 layout_mode = 2
 
-[connection signal="pressed" from="BulletType/LinearButton" to="." method="_on_linear_button_pressed"]
-[connection signal="pressed" from="BulletType/SineButton" to="." method="_on_sine_button_pressed"]
-[connection signal="pressed" from="BulletType/ParabolicButton" to="." method="_on_parabolic_button_pressed"]
+[node name="BaseBulletUI" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.844
+anchor_top = 0.622
+anchor_right = 0.981
+anchor_bottom = 0.978
+offset_left = -0.320068
+offset_top = 0.159973
+offset_right = 0.319946
+offset_bottom = -0.160034
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="BaseBulletUI"]
+layout_mode = 2
+text = "BaseBullet"
+
+[node name="BaseBulletSettings" type="VBoxContainer" parent="BaseBulletUI"]
+layout_mode = 2
+
+[node name="DecelerationVbox" type="VBoxContainer" parent="BaseBulletUI/BaseBulletSettings"]
+layout_mode = 2
+
+[node name="DecelerationLabel" type="Label" parent="BaseBulletUI/BaseBulletSettings/DecelerationVbox"]
+layout_mode = 2
+text = "Deceleration"
+
+[node name="DecelerationSlider" type="HSlider" parent="BaseBulletUI/BaseBulletSettings/DecelerationVbox"]
+layout_mode = 2
+max_value = 20.0
+
+[node name="EaseVbox" type="VBoxContainer" parent="BaseBulletUI/BaseBulletSettings"]
+layout_mode = 2
+
+[node name="EaseLabel" type="Label" parent="BaseBulletUI/BaseBulletSettings/EaseVbox"]
+layout_mode = 2
+text = "Easing Curve"
+
+[node name="EaseSlider" type="HSlider" parent="BaseBulletUI/BaseBulletSettings/EaseVbox"]
+layout_mode = 2
+min_value = -5.0
+max_value = 5.0
+step = 0.2
+value = 1.0
+
+[connection signal="pressed" from="BulletType/CenterContainer/LinearButton" to="." method="_on_linear_button_pressed"]
+[connection signal="pressed" from="BulletType/CenterContainer2/SineButton" to="." method="_on_sine_button_pressed"]
+[connection signal="pressed" from="BulletType/CenterContainer3/ParabolicButton" to="." method="_on_parabolic_button_pressed"]
 [connection signal="value_changed" from="LinearUI/SpeedVbox/SpeedSlider" to="." method="_on_speed_slider_value_changed"]
 [connection signal="value_changed" from="LinearUI/FireRateVbox/FireRateSlider" to="." method="_on_fire_rate_slider_value_changed"]
 [connection signal="pressed" from="LinearUI/RotateButton" to="." method="_on_rotate_button_pressed"]
 [connection signal="value_changed" from="SineUI/AmplitudeVbox/AmplitudeSlider" to="." method="_on_amplitude_slider_value_changed"]
 [connection signal="value_changed" from="SineUI/FrequencyVbox/FrequencySlider" to="." method="_on_frequency_slider_value_changed"]
+[connection signal="value_changed" from="ParabolicUI/CoeffAVbox/CoeffASlider" to="." method="_on_coeff_a_slider_value_changed"]
+[connection signal="value_changed" from="ParabolicUI/CoeffBVbox/CoeffBSlider" to="." method="_on_coeff_b_slider_value_changed"]
+[connection signal="value_changed" from="ParabolicUI/ConstCVbox/ConstCSlider" to="." method="_on_const_c_slider_value_changed"]
+[connection signal="value_changed" from="BaseBulletUI/BaseBulletSettings/DecelerationVbox/DecelerationSlider" to="." method="_on_deceleration_slider_value_changed"]
+[connection signal="value_changed" from="BaseBulletUI/BaseBulletSettings/EaseVbox/EaseSlider" to="." method="_on_ease_slider_value_changed"]

@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-@onready var linear_button = $BulletType/LinearButton
-@onready var sine_button = $BulletType/SineButton
-@onready var parabolic_button = $BulletType/ParabolicButton
+@onready var linear_button = %LinearButton
+@onready var sine_button = %SineButton
+@onready var parabolic_button = %ParabolicButton
 
 @onready var linear_ui = $LinearUI
 @onready var sine_ui = $SineUI
@@ -13,6 +13,11 @@ signal amplitude_changed(amplitude)
 signal frequency_changed(frequency)
 signal speed_changed(speed)
 signal fire_rate_changed(fire_rate)
+signal coefficient_a_changed(a)
+signal coefficient_b_changed(b)
+signal constant_c_changed(c)
+signal deceleration_changed(deceleration)
+signal ease_curve_change(ease_curve)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -64,3 +69,18 @@ func _on_speed_slider_value_changed(value):
 
 func _on_fire_rate_slider_value_changed(value):
 	fire_rate_changed.emit(value)
+
+func _on_coeff_a_slider_value_changed(value):
+	coefficient_a_changed.emit(value)
+
+func _on_coeff_b_slider_value_changed(value):
+	coefficient_b_changed.emit(value)
+
+func _on_const_c_slider_value_changed(value):
+	constant_c_changed.emit(value)
+
+func _on_deceleration_slider_value_changed(value):
+	deceleration_changed.emit(value)
+
+func _on_ease_slider_value_changed(value):
+	ease_curve_change.emit(value)

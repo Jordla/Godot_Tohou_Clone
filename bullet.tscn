@@ -21,4 +21,8 @@ shape = SubResource("CapsuleShape2D_tgas6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="LifespanTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="LifespanTimer" to="." method="_on_timer_timeout"]
