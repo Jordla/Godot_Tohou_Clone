@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://tfyfq076auly"]
+[gd_scene load_steps=4 format=3 uid="uid://dqtya6fsnkvs7"]
 
 [ext_resource type="PackedScene" uid="uid://dvyn1aqa6xkvi" path="res://bullet.tscn" id="1_yrhl4"]
 [ext_resource type="Texture2D" uid="uid://ca1a8cr7cpsa2" path="res://TohouBulletSpriteSheet.png" id="2_7jims"]

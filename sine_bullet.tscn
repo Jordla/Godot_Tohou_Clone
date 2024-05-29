@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2utkh4276ga0"]
+[gd_scene load_steps=4 format=3 uid="uid://dd6dwgnm5rg3l"]
 
 [ext_resource type="PackedScene" uid="uid://dvyn1aqa6xkvi" path="res://bullet.tscn" id="1_xt01x"]
 [ext_resource type="Script" path="res://sine_bullet.gd" id="2_tf6rc"]
