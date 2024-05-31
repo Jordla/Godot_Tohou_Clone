@@ -17,6 +17,8 @@ func _physics_process(delta):
 		decelerate(delta)
 	position += velocity
 	time += delta
+	if is_lifetime and time > life_time:
+		queue_free()
 	
 	# velocity - decelerate_velocity 
 

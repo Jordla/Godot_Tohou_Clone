@@ -13,6 +13,9 @@ var slider_b : float
 var slider_c : float
 var slider_deceleration : float
 var slider_ease_curve : float = 1.0
+var spinner_lifetime : float
+var is_deceleration_active : bool = false
+var is_lifespan_active : bool = false
 
 var temp_speed : float = 0.0
 var temp_velo : float = 5.0
@@ -30,7 +33,10 @@ func _ready():
 	ui.coefficient_b_changed.connect(set_b)
 	ui.constant_c_changed.connect(set_c)
 	ui.deceleration_changed.connect(set_deceleration)
-	ui.ease_curve_change.connect(set_ease_curve)
+	ui.ease_curve_changed.connect(set_ease_curve)
+	ui.lifespan_changed.connect(set_lifetime)
+	ui.deceleration_toggled.connect(set_deceleration_state)
+	ui.lifespan_toggled.connect(set_lifespan_state)
 	enemy.shoot.connect(fire_bullet)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -69,6 +75,15 @@ func set_deceleration(deceleration):
 func set_ease_curve(ease_curve):
 	slider_ease_curve = ease_curve
 
+func set_lifetime(seconds):
+	spinner_lifetime = seconds
+
+func set_deceleration_state(toggled):
+	is_deceleration_active = toggled
+
+func set_lifespan_state(toggled):
+	is_lifespan_active = toggled
+
 # Create a bullet instance
 func fire_bullet(Bullet : PackedScene, location : Transform2D):
 	var bullet = Bullet.instantiate()
@@ -82,8 +97,13 @@ func fire_bullet(Bullet : PackedScene, location : Transform2D):
 		bullet.coefficient_a = slider_a
 		bullet.coefficient_b = slider_b
 		bullet.constant_c = slider_c
-	bullet.deceleration = slider_deceleration
-	bullet.ease_curve = slider_ease_curve
+	bullet.set_decelerate(is_deceleration_active)
+	if is_deceleration_active:
+		bullet.deceleration = slider_deceleration
+		bullet.ease_curve = slider_ease_curve
+	bullet.set_lifetime(is_lifespan_active)
+	if is_lifespan_active:
+		bullet.life_time = spinner_lifetime
 	add_child(bullet)
 
 

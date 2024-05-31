@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://ovdnwq6qgehu"]
+[gd_scene load_steps=5 format=3 uid="uid://ovdnwq6qgehu"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_whqeh"]
+[ext_resource type="PackedScene" uid="uid://l8r88rehicdv" path="res://deceleration_ui.tscn" id="2_jpt4w"]
+[ext_resource type="PackedScene" uid="uid://b6f6jmqa211ew" path="res://lifespan_ui.tscn" id="3_kfmko"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_kugig"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_whqeh")
+deceleration_ui = ExtResource("2_jpt4w")
+lifespan_ui = ExtResource("3_kfmko")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = -1
@@ -194,37 +198,28 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 30
 
-[node name="Label" type="Label" parent="BaseBulletUI"]
+[node name="BaseBulletLabel" type="Label" parent="BaseBulletUI"]
 layout_mode = 2
 text = "BaseBullet"
 
-[node name="BaseBulletSettings" type="VBoxContainer" parent="BaseBulletUI"]
+[node name="BaseBulletCenterContainer" type="CenterContainer" parent="BaseBulletUI"]
 layout_mode = 2
 
-[node name="DecelerationVbox" type="VBoxContainer" parent="BaseBulletUI/BaseBulletSettings"]
+[node name="ButtonHBox" type="HBoxContainer" parent="BaseBulletUI/BaseBulletCenterContainer"]
 layout_mode = 2
 
-[node name="DecelerationLabel" type="Label" parent="BaseBulletUI/BaseBulletSettings/DecelerationVbox"]
+[node name="DecelerationButton" type="Button" parent="BaseBulletUI/BaseBulletCenterContainer/ButtonHBox"]
 layout_mode = 2
+toggle_mode = true
 text = "Deceleration"
 
-[node name="DecelerationSlider" type="HSlider" parent="BaseBulletUI/BaseBulletSettings/DecelerationVbox"]
+[node name="LifespanButton" type="Button" parent="BaseBulletUI/BaseBulletCenterContainer/ButtonHBox"]
 layout_mode = 2
-max_value = 20.0
+toggle_mode = true
+text = "Lifespan"
 
-[node name="EaseVbox" type="VBoxContainer" parent="BaseBulletUI/BaseBulletSettings"]
+[node name="BaseBulletSettings" type="VBoxContainer" parent="BaseBulletUI"]
 layout_mode = 2
-
-[node name="EaseLabel" type="Label" parent="BaseBulletUI/BaseBulletSettings/EaseVbox"]
-layout_mode = 2
-text = "Easing Curve"
-
-[node name="EaseSlider" type="HSlider" parent="BaseBulletUI/BaseBulletSettings/EaseVbox"]
-layout_mode = 2
-min_value = -5.0
-max_value = 5.0
-step = 0.2
-value = 1.0
 
 [connection signal="pressed" from="BulletType/CenterContainer/LinearButton" to="." method="_on_linear_button_pressed"]
 [connection signal="pressed" from="BulletType/CenterContainer2/SineButton" to="." method="_on_sine_button_pressed"]
@@ -237,5 +232,5 @@ value = 1.0
 [connection signal="value_changed" from="ParabolicUI/CoeffAVbox/CoeffASlider" to="." method="_on_coeff_a_slider_value_changed"]
 [connection signal="value_changed" from="ParabolicUI/CoeffBVbox/CoeffBSlider" to="." method="_on_coeff_b_slider_value_changed"]
 [connection signal="value_changed" from="ParabolicUI/ConstCVbox/ConstCSlider" to="." method="_on_const_c_slider_value_changed"]
-[connection signal="value_changed" from="BaseBulletUI/BaseBulletSettings/DecelerationVbox/DecelerationSlider" to="." method="_on_deceleration_slider_value_changed"]
-[connection signal="value_changed" from="BaseBulletUI/BaseBulletSettings/EaseVbox/EaseSlider" to="." method="_on_ease_slider_value_changed"]
+[connection signal="toggled" from="BaseBulletUI/BaseBulletCenterContainer/ButtonHBox/DecelerationButton" to="." method="_on_deceleration_button_toggled"]
+[connection signal="toggled" from="BaseBulletUI/BaseBulletCenterContainer/ButtonHBox/LifespanButton" to="." method="_on_lifespan_button_toggled"]

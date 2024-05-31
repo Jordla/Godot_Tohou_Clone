@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://l8r88rehicdv"]
+
+[ext_resource type="Script" path="res://deceleration_ui.gd" id="1_jiis7"]
+
+[node name="DecelerationUI" type="VBoxContainer"]
+anchors_preset = -1
+anchor_left = 0.837
+anchor_top = 0.767
+anchor_right = 0.981
+anchor_bottom = 0.892
+offset_left = 0.640015
+offset_top = -0.23999
+offset_right = 0.319946
+offset_bottom = -0.23999
+script = ExtResource("1_jiis7")
+
+[node name="DecelerationVbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DecelerationVbox"]
+layout_mode = 2
+
+[node name="DecelerationLabel" type="Label" parent="DecelerationVbox/HBoxContainer"]
+layout_mode = 2
+text = "Deceleration:"
+
+[node name="DecelerationValue" type="Label" parent="DecelerationVbox/HBoxContainer"]
+layout_mode = 2
+
+[node name="DecelerationSlider" type="HSlider" parent="DecelerationVbox"]
+layout_mode = 2
+max_value = 20.0
+
+[node name="EaseVbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EaseVbox"]
+layout_mode = 2
+
+[node name="EaseLabel" type="Label" parent="EaseVbox/HBoxContainer"]
+layout_mode = 2
+text = "Easing Curve:"
+
+[node name="EaseValue" type="Label" parent="EaseVbox/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+
+[node name="EaseSlider" type="HSlider" parent="EaseVbox"]
+layout_mode = 2
+min_value = -5.0
+max_value = 5.0
+step = 0.2
+value = 1.0
+
+[connection signal="value_changed" from="DecelerationVbox/DecelerationSlider" to="." method="_on_deceleration_slider_value_changed"]
+[connection signal="value_changed" from="EaseVbox/EaseSlider" to="." method="_on_ease_slider_value_changed"]

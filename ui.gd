@@ -7,6 +7,12 @@ extends CanvasLayer
 @onready var linear_ui = $LinearUI
 @onready var sine_ui = $SineUI
 @onready var parabolic_ui = $ParabolicUI
+
+@onready var base_bullet_settings = $BaseBulletUI/BaseBulletSettings
+
+@export var deceleration_ui : PackedScene
+@export var lifespan_ui : PackedScene
+
 var bullet_types : Array = []
 
 signal amplitude_changed(amplitude)
@@ -17,7 +23,10 @@ signal coefficient_a_changed(a)
 signal coefficient_b_changed(b)
 signal constant_c_changed(c)
 signal deceleration_changed(deceleration)
-signal ease_curve_change(ease_curve)
+signal ease_curve_changed(ease_curve)
+signal lifespan_changed(seconds)
+signal deceleration_toggled(toggled)
+signal lifespan_toggled(toggled)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -83,4 +92,28 @@ func _on_deceleration_slider_value_changed(value):
 	deceleration_changed.emit(value)
 
 func _on_ease_slider_value_changed(value):
-	ease_curve_change.emit(value)
+	ease_curve_changed.emit(value)
+
+
+func _on_lifespan_spin_box_value_changed(value):
+	lifespan_changed.emit(value)
+
+func _on_deceleration_button_toggled(toggled_on):
+	if toggled_on:
+		var deceleration_ui_instance = deceleration_ui.instantiate()
+		base_bullet_settings.add_child(deceleration_ui_instance)
+		deceleration_ui_instance.deceleration_slider.value_changed.connect(_on_lifespan_spin_box_value_changed)
+		deceleration_ui_instance.ease_slider.value_changed.connect(_on_ease_slider_value_changed)
+	elif not toggled_on:
+		base_bullet_settings.get_node("DecelerationUI").queue_free()
+	deceleration_toggled.emit(toggled_on)
+
+
+func _on_lifespan_button_toggled(toggled_on):
+	if toggled_on:
+		var lifespan_ui_instance = lifespan_ui.instantiate()
+		base_bullet_settings.add_child(lifespan_ui_instance)
+		lifespan_ui_instance.lifespan_spin_box.value_changed.connect(_on_lifespan_spin_box_value_changed)
+	elif not toggled_on:
+		base_bullet_settings.get_node("LifespanUI").queue_free()
+	lifespan_toggled.emit(toggled_on)
