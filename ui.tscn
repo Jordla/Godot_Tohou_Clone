@@ -108,6 +108,7 @@ value = 0.999
 
 [node name="RotateButton" type="Button" parent="LinearUI"]
 layout_mode = 2
+toggle_mode = true
 text = "Rotate"
 
 [node name="SineUI" type="VBoxContainer" parent="."]
@@ -226,7 +227,7 @@ layout_mode = 2
 [connection signal="pressed" from="BulletType/CenterContainer3/ParabolicButton" to="." method="_on_parabolic_button_pressed"]
 [connection signal="value_changed" from="LinearUI/SpeedVbox/SpeedSlider" to="." method="_on_speed_slider_value_changed"]
 [connection signal="value_changed" from="LinearUI/FireRateVbox/FireRateSlider" to="." method="_on_fire_rate_slider_value_changed"]
-[connection signal="pressed" from="LinearUI/RotateButton" to="." method="_on_rotate_button_pressed"]
+[connection signal="toggled" from="LinearUI/RotateButton" to="." method="_on_rotate_button_toggled"]
 [connection signal="value_changed" from="SineUI/AmplitudeVbox/AmplitudeSlider" to="." method="_on_amplitude_slider_value_changed"]
 [connection signal="value_changed" from="SineUI/FrequencyVbox/FrequencySlider" to="." method="_on_frequency_slider_value_changed"]
 [connection signal="value_changed" from="ParabolicUI/CoeffAVbox/CoeffASlider" to="." method="_on_coeff_a_slider_value_changed"]

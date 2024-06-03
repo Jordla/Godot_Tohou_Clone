@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://d4awpy5vho2jb"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_t782f"]
+[ext_resource type="PackedScene" uid="uid://bgtiq6v4nklhk" path="res://linear_bullet.tscn" id="2_gn7x7"]
+[ext_resource type="PackedScene" uid="uid://dd6dwgnm5rg3l" path="res://sine_bullet.tscn" id="3_13u6e"]
+[ext_resource type="PackedScene" uid="uid://dqtya6fsnkvs7" path="res://parabolic_bullet.tscn" id="4_amlig"]
+[ext_resource type="Texture2D" uid="uid://0xcb2n54g7jd" path="res://Mungus2.webp" id="4_y74i1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2uii"]
+size = Vector2(98, 130)
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_t782f")
+LinearBullet = ExtResource("2_gn7x7")
+SineBullet = ExtResource("3_13u6e")
+ParabolicBullet = ExtResource("4_amlig")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-16, 24)
+scale = Vector2(0.294741, 0.324455)
+texture = ExtResource("4_y74i1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-16, 24)
+shape = SubResource("RectangleShape2D_c2uii")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 448, 0)
+width = 4.0
+default_color = Color(0, 0, 1, 1)

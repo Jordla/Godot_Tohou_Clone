@@ -12,6 +12,7 @@ var wait_time : float = 1.0 # In msec
 var time : float = 0.0
 var rotated : float = 0.0
 var current_bullet : PackedScene = null
+var is_rotate : bool = false
 
 
 signal shoot(Bullet : PackedScene, location : Transform2D)
@@ -23,6 +24,7 @@ func _ready():
 	Events.linear_bullet_selected.connect(select_linear)
 	Events.sine_bullet_selected.connect(select_sine)
 	Events.parabolic_bullet_selected.connect(select_parabolic)
+	Events.rotate_changed.connect(check_rotate)
 
 func select_linear():
 	current_bullet = LinearBullet
@@ -37,6 +39,9 @@ func rotate_enemy():
 	rotated += 10.0
 	enemy.set_rotation_degrees(rotated)
 
+func check_rotate(toggled_on):
+	is_rotate = toggled_on
+
 func get_muzzle_position():
 	return $Marker2D.global_transform
 
@@ -46,7 +51,8 @@ func _physics_process(delta):
 	if time > wait_time:
 		shoot.emit(current_bullet, get_muzzle_position())
 		time = 0.0
-	#rotate_enemy()
+	if is_rotate:
+		rotate_enemy()
 
 
 

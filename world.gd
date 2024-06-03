@@ -17,11 +17,6 @@ var spinner_lifetime : float
 var is_deceleration_active : bool = false
 var is_lifespan_active : bool = false
 
-var temp_speed : float = 0.0
-var temp_velo : float = 5.0
-var temp_accel : float = 10
-var temp_time : float = 0.0
-var value : float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
