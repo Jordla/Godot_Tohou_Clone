@@ -107,7 +107,6 @@ func _on_deceleration_button_toggled(toggled_on):
 		base_bullet_settings.get_node("DecelerationUI").queue_free()
 	deceleration_toggled.emit(toggled_on)
 
-
 func _on_lifespan_button_toggled(toggled_on):
 	if toggled_on:
 		var lifespan_ui_instance = lifespan_ui.instantiate()
@@ -116,7 +115,6 @@ func _on_lifespan_button_toggled(toggled_on):
 	elif not toggled_on:
 		base_bullet_settings.get_node("LifespanUI").queue_free()
 	lifespan_toggled.emit(toggled_on)
-
 
 func _on_rotate_button_toggled(toggled_on):
 	Events.rotate_changed.emit(toggled_on)

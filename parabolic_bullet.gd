@@ -8,13 +8,14 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	velocity = get_velocity(delta)
-	position += velocity
-	time += delta
+	get_velocity(delta)
+	apply_rotation_transformation(velocity.x, velocity.y, get_rotation())
+	position += velocity * delta
+	super(delta)
 
 func get_velocity(delta):
-	var velocity_y : float = pow((coefficient_a * time), 2) + coefficient_b * time + constant_c
-	var velocity_x : float = get_x_velocity(delta)
-	return Vector2(velocity_x, velocity_y)
+	velocity = Vector2(
+			get_x_velocity(delta, is_decelerate), 
+			pow((coefficient_a * time), 2) + coefficient_b * time + constant_c)

@@ -10,19 +10,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	#if not is_decelerate: 
-		#velocity = get_velocity(delta)
-		#is_decelerate = true
-	#else: 
-		#decelerate(delta)
-	if is_decelerate:
-		eased()
-	get_x_velocity(delta)
-	position += velocity
-	time += delta
-	if is_lifetime and time > life_time:
-		queue_free()
-	velocity_is_zero()
+	velocity.x = get_x_velocity(delta, is_decelerate)
+	move_bullet_x(delta)
+	super(delta)
 	
-	# velocity - decelerate_velocity 
 

@@ -36,11 +36,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	#value = ease(temp_time, 0.2)
-	##print("Delta:" + str(delta))
-	#temp_velo = move_toward(temp_velo, 0, delta * temp_accel * value)
-	#temp_time += delta
-	#print(temp_velo)
 	pass
 	
 func set_amplitude(amplitude):
