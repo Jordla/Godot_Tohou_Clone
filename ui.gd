@@ -10,6 +10,18 @@ extends CanvasLayer
 
 @onready var base_bullet_settings = $BaseBulletUI/BaseBulletSettings
 
+@onready var speed_label_value = $LinearUI/SpeedVbox/LabelHbox/SpeedLabelValue
+@onready var fire_rate_label_value = $LinearUI/FireRateVbox/LabelHbox/FireRateLabelValue
+@onready var amplitdue_label_value = $SineUI/AmplitudeVbox/LabelHbox/AmplitdueLabelValue
+@onready var frequency_label_value = $SineUI/FrequencyVbox/LabelHbox/FrequencyLabelValue
+
+
+
+@onready var a_label_value = $ParabolicUI/CoeffAVbox/LabelHbox/ALabelValue
+@onready var b_label_value = $ParabolicUI/CoeffBVbox/LabelHbox/BLabelValue
+@onready var c_label_value = $ParabolicUI/ConstCVbox/LabelHbox/CLabelValue
+
+
 @export var deceleration_ui : PackedScene
 @export var lifespan_ui : PackedScene
 
@@ -69,24 +81,31 @@ func _on_parabolic_button_pressed():
 
 func _on_amplitude_slider_value_changed(value):
 	amplitude_changed.emit(value)
+	amplitdue_label_value.text = str(value)
 
 func _on_frequency_slider_value_changed(value):
 	frequency_changed.emit(value)
+	frequency_label_value.text = str(value)
 
 func _on_speed_slider_value_changed(value):
 	speed_changed.emit(value)
+	speed_label_value.text = str(value)
 
 func _on_fire_rate_slider_value_changed(value):
 	fire_rate_changed.emit(value)
+	fire_rate_label_value.text = str(value)
 
 func _on_coeff_a_slider_value_changed(value):
 	coefficient_a_changed.emit(value)
+	a_label_value.text = str(value)
 
 func _on_coeff_b_slider_value_changed(value):
 	coefficient_b_changed.emit(value)
+	b_label_value.text = str(value)
 
 func _on_const_c_slider_value_changed(value):
 	constant_c_changed.emit(value)
+	c_label_value.text	= str(value)
 
 func _on_deceleration_slider_value_changed(value):
 	deceleration_changed.emit(value)
