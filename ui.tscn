@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ovdnwq6qgehu"]
+[gd_scene load_steps=6 format=3 uid="uid://ovdnwq6qgehu"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_whqeh"]
 [ext_resource type="PackedScene" uid="uid://l8r88rehicdv" path="res://deceleration_ui.tscn" id="2_jpt4w"]
 [ext_resource type="PackedScene" uid="uid://b6f6jmqa211ew" path="res://lifespan_ui.tscn" id="3_kfmko"]
+[ext_resource type="Script" path="res://EnemyMovementPatterns.gd" id="4_kybew"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_kugig"]
 
@@ -67,13 +68,14 @@ text = "Parabolic"
 
 [node name="LinearUI" type="VBoxContainer" parent="."]
 anchors_preset = -1
-anchor_left = 0.844
-anchor_top = 0.278
+anchor_left = 0.845
+anchor_top = 0.122
 anchor_right = 0.975
-anchor_bottom = 0.629
-offset_left = -0.320068
-offset_top = -0.160019
-offset_bottom = 3.12
+anchor_bottom = 0.333
+offset_left = -0.600098
+offset_top = 0.159996
+offset_right = 1.0
+offset_bottom = 0.23999
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -127,12 +129,13 @@ text = "Rotate"
 visible = false
 anchors_preset = -1
 anchor_left = 0.844
-anchor_top = 0.278
+anchor_top = 0.122
 anchor_right = 0.975
-anchor_bottom = 0.933
-offset_left = -0.320068
-offset_top = -0.160019
-offset_bottom = 0.23999
+anchor_bottom = 0.311
+offset_left = 0.679932
+offset_top = 0.159996
+offset_right = 1.0
+offset_bottom = 0.0799866
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 40
@@ -174,10 +177,14 @@ max_value = 20.0
 
 [node name="ParabolicUI" type="VBoxContainer" parent="."]
 visible = false
-offset_left = 1080.0
-offset_top = 200.0
-offset_right = 1248.0
-offset_bottom = 469.0
+anchors_preset = -1
+anchor_left = 0.845
+anchor_top = 0.122
+anchor_right = 0.975
+anchor_bottom = 0.322
+offset_left = -1.6001
+offset_top = 0.159996
+offset_bottom = 0.159973
 
 [node name="CoeffAVbox" type="VBoxContainer" parent="ParabolicUI"]
 layout_mode = 2
@@ -194,6 +201,10 @@ layout_mode = 2
 
 [node name="CoeffASlider" type="HSlider" parent="ParabolicUI/CoeffAVbox"]
 layout_mode = 2
+min_value = -2.0
+max_value = 2.0
+step = 0.1
+value = 0.5
 
 [node name="CoeffBVbox" type="VBoxContainer" parent="ParabolicUI"]
 layout_mode = 2
@@ -210,6 +221,8 @@ layout_mode = 2
 
 [node name="CoeffBSlider" type="HSlider" parent="ParabolicUI/CoeffBVbox"]
 layout_mode = 2
+min_value = -10.0
+max_value = 10.0
 
 [node name="ConstCVbox" type="VBoxContainer" parent="ParabolicUI"]
 layout_mode = 2
@@ -226,6 +239,8 @@ layout_mode = 2
 
 [node name="ConstCSlider" type="HSlider" parent="ParabolicUI/ConstCVbox"]
 layout_mode = 2
+min_value = -10.0
+max_value = 10.0
 
 [node name="BaseBulletUI" type="VBoxContainer" parent="."]
 anchors_preset = -1
@@ -264,6 +279,36 @@ text = "Lifespan"
 [node name="BaseBulletSettings" type="VBoxContainer" parent="BaseBulletUI"]
 layout_mode = 2
 
+[node name="EnemyMovementPatterns" type="VBoxContainer" parent="."]
+offset_left = 1064.0
+offset_top = 256.0
+offset_right = 1274.0
+offset_bottom = 303.0
+script = ExtResource("4_kybew")
+
+[node name="CenterContainer2" type="CenterContainer" parent="EnemyMovementPatterns"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="EnemyMovementPatterns/CenterContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Enemy Movement Patterns"
+
+[node name="CenterContainer" type="CenterContainer" parent="EnemyMovementPatterns"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="EnemyMovementPatterns/CenterContainer"]
+layout_mode = 2
+item_count = 4
+popup/item_0/text = "Still"
+popup/item_0/id = 0
+popup/item_1/text = "Horizontal"
+popup/item_1/id = 1
+popup/item_2/text = "Vertical"
+popup/item_2/id = 2
+popup/item_3/text = "Circular"
+popup/item_3/id = 3
+
 [connection signal="pressed" from="BulletType/CenterContainer/LinearButton" to="." method="_on_linear_button_pressed"]
 [connection signal="pressed" from="BulletType/CenterContainer2/SineButton" to="." method="_on_sine_button_pressed"]
 [connection signal="pressed" from="BulletType/CenterContainer3/ParabolicButton" to="." method="_on_parabolic_button_pressed"]
@@ -277,3 +322,4 @@ layout_mode = 2
 [connection signal="value_changed" from="ParabolicUI/ConstCVbox/ConstCSlider" to="." method="_on_const_c_slider_value_changed"]
 [connection signal="toggled" from="BaseBulletUI/BaseBulletCenterContainer/ButtonHBox/DecelerationButton" to="." method="_on_deceleration_button_toggled"]
 [connection signal="toggled" from="BaseBulletUI/BaseBulletCenterContainer/ButtonHBox/LifespanButton" to="." method="_on_lifespan_button_toggled"]
+[connection signal="item_selected" from="EnemyMovementPatterns/CenterContainer/OptionButton" to="EnemyMovementPatterns" method="_on_option_button_item_selected"]

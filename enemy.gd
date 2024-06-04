@@ -49,7 +49,8 @@ func get_muzzle_position():
 func _physics_process(delta):
 	time += delta
 	if time > wait_time:
-		shoot.emit(current_bullet, get_muzzle_position())
+		#shoot.emit(current_bullet, get_muzzle_position())
+		Events.fire.emit(current_bullet, get_muzzle_position())
 		time = 0.0
 	if is_rotate:
 		rotate_enemy()

@@ -1,22 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce8nqnw3ep4n8"]
+[gd_scene load_steps=7 format=3 uid="uid://ce8nqnw3ep4n8"]
 
-[ext_resource type="Script" path="res://PathFollow2D.gd" id="1_l228f"]
+[ext_resource type="Script" path="res://mob_path.gd" id="1_l5c2m"]
+[ext_resource type="Curve2D" uid="uid://c1qh6tu10bodc" path="res://horizontal_path.tres" id="1_q5njb"]
+[ext_resource type="Curve2D" uid="uid://b5s4j1gjeh3gy" path="res://vertical_path.tres" id="1_r37ds"]
+[ext_resource type="Curve2D" uid="uid://c07ty4i62y8pe" path="res://still_path.tres" id="1_rfwkd"]
 [ext_resource type="PackedScene" uid="uid://d4awpy5vho2jb" path="res://enemy.tscn" id="1_y38xj"]
-
-[sub_resource type="Curve2D" id="Curve2D_fqx7g"]
-bake_interval = 10.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 184, 312, 0, 0, 0, 0, 1024, 312, 0, 0, 0, 0, 176, 312)
-}
-point_count = 3
+[ext_resource type="Curve2D" uid="uid://byvtgksoyii5m" path="res://circular_path.tres" id="4_euuxi"]
 
 [node name="Path2D" type="Path2D"]
-curve = SubResource("Curve2D_fqx7g")
+position = Vector2(176, -296)
+scale = Vector2(0.851337, 0.916117)
+script = ExtResource("1_l5c2m")
+horizontal_path = ExtResource("1_q5njb")
+vertical_path = ExtResource("1_r37ds")
+circular_path = ExtResource("4_euuxi")
+still_path = ExtResource("1_rfwkd")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(203.299, 312)
-progress = 1660.65
+position = Vector2(-208, 320)
 rotates = false
-script = ExtResource("1_l228f")
 
 [node name="Enemy" parent="PathFollow2D" instance=ExtResource("1_y38xj")]
+position = Vector2(-0.298782, 0)

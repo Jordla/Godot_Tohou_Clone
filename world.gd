@@ -1,7 +1,9 @@
 extends Node2D
 
-@onready var enemy = $Enemy
 @onready var ui = $UI
+@onready var path_2d = $Path2D
+@onready var enemy_movement_patterns = $UI/EnemyMovementPatterns
+
 #var ui = preload("res://ui.tscn")
 
 var slider_frequency : float
@@ -32,10 +34,15 @@ func _ready():
 	ui.lifespan_changed.connect(set_lifetime)
 	ui.deceleration_toggled.connect(set_deceleration_state)
 	ui.lifespan_toggled.connect(set_lifespan_state)
-	enemy.shoot.connect(fire_bullet)
+	#enemy.shoot.connect(fire_bullet)
+	Events.fire.connect(fire_bullet)
+	enemy_movement_patterns.path_selected.connect(set_path)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	pass
+
+func _input(event):
 	pass
 	
 func set_amplitude(amplitude):
@@ -48,7 +55,7 @@ func set_speed(speed):
 	slider_speed = speed
 
 func set_fire_rate(fire_rate):
-	enemy.wait_time = fire_rate
+	path_2d.enemy.wait_time = fire_rate
 
 func set_a(a):
 	slider_a = a
@@ -96,6 +103,8 @@ func fire_bullet(Bullet : PackedScene, location : Transform2D):
 		bullet.life_time = spinner_lifetime
 	add_child(bullet)
 
+func set_path(path_str):
+	path_2d.set_path(path_str)
 
 	
 
