@@ -21,6 +21,7 @@ extends CanvasLayer
 @onready var b_label_value = $ParabolicUI/CoeffBVbox/LabelHbox/BLabelValue
 @onready var c_label_value = $ParabolicUI/ConstCVbox/LabelHbox/CLabelValue
 
+@onready var rotation_value = $EnemyMovementPatterns/RotationLabels/RotationValue
 
 @export var deceleration_ui : PackedScene
 @export var lifespan_ui : PackedScene
@@ -39,6 +40,7 @@ signal ease_curve_changed(ease_curve)
 signal lifespan_changed(seconds)
 signal deceleration_toggled(toggled)
 signal lifespan_toggled(toggled)
+signal rotation_value_changed(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -89,11 +91,11 @@ func _on_frequency_slider_value_changed(value):
 
 func _on_speed_slider_value_changed(value):
 	speed_changed.emit(value)
-	speed_label_value.text = str(value)
+	speed_label_value.text = str(value) + " px/sec"
 
 func _on_fire_rate_slider_value_changed(value):
 	fire_rate_changed.emit(value)
-	fire_rate_label_value.text = str(value)
+	fire_rate_label_value.text = str(value) + " sec"
 
 func _on_coeff_a_slider_value_changed(value):
 	coefficient_a_changed.emit(value)
@@ -137,3 +139,13 @@ func _on_lifespan_button_toggled(toggled_on):
 
 func _on_rotate_button_toggled(toggled_on):
 	Events.rotate_changed.emit(toggled_on)
+
+func _on_rotation_slider_value_changed(value):
+	rotation_value_changed.emit(value)
+	rotation_value.text = str(value)
+
+func _on_flip_button_toggled(toggled_on):
+	if toggled_on:
+		Events.flipped = -1
+	else:
+		Events.flipped = 1

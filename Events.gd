@@ -8,3 +8,4 @@ signal fire(current_bullet : PackedScene, position : Transform2D)
 
 var bullet_array = ["linear", "sine", "parabolic"]
 var current_bullet = bullet_array[0]
+var flipped : int = 1

@@ -10,7 +10,8 @@ class_name Enemy
 
 var wait_time : float = 1.0 # In msec
 var time : float = 0.0
-var rotated : float = 0.0
+var rotate_value : float
+var rotated : float
 var current_bullet : PackedScene = null
 var is_rotate : bool = false
 
@@ -35,9 +36,8 @@ func select_sine():
 func select_parabolic():
 	current_bullet = ParabolicBullet
 
-func rotate_enemy():
-	rotated += 10.0
-	enemy.set_rotation_degrees(rotated)
+func set_rotated(value):
+	rotate_value = value
 
 func check_rotate(toggled_on):
 	is_rotate = toggled_on
@@ -53,8 +53,8 @@ func _physics_process(delta):
 		Events.fire.emit(current_bullet, get_muzzle_position())
 		time = 0.0
 	if is_rotate:
-		rotate_enemy()
-
+		rotated += rotate_value * Events.flipped
+		enemy.set_rotation_degrees(rotated)
 
 
 

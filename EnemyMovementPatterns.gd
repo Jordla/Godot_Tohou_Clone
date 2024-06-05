@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@onready var option_button = $CenterContainer/OptionButton
+@onready var option_button = $OptionButtonContainer/OptionButton
 
 signal path_selected(path_string)
 # Called when the node enters the scene tree for the first time.

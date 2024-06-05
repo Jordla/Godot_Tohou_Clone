@@ -3,6 +3,7 @@ extends Node2D
 @onready var ui = $UI
 @onready var path_2d = $Path2D
 @onready var enemy_movement_patterns = $UI/EnemyMovementPatterns
+@onready var enemy = $Path2D/PathFollow2D/Enemy
 
 #var ui = preload("res://ui.tscn")
 
@@ -34,7 +35,7 @@ func _ready():
 	ui.lifespan_changed.connect(set_lifetime)
 	ui.deceleration_toggled.connect(set_deceleration_state)
 	ui.lifespan_toggled.connect(set_lifespan_state)
-	#enemy.shoot.connect(fire_bullet)
+	ui.rotation_value_changed.connect(set_rotation_value)
 	Events.fire.connect(fire_bullet)
 	enemy_movement_patterns.path_selected.connect(set_path)
 
@@ -43,7 +44,8 @@ func _physics_process(delta):
 	pass
 
 func _input(event):
-	pass
+	if Input.is_action_just_pressed("bomb"):
+		get_tree().call_group("Bullets", "queue_free")
 	
 func set_amplitude(amplitude):
 	slider_amplitude = amplitude
@@ -80,6 +82,9 @@ func set_deceleration_state(toggled):
 
 func set_lifespan_state(toggled):
 	is_lifespan_active = toggled
+
+func set_rotation_value(value):
+	enemy.set_rotated(value)
 
 # Create a bullet instance
 func fire_bullet(Bullet : PackedScene, location : Transform2D):

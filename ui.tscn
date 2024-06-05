@@ -87,7 +87,7 @@ layout_mode = 2
 
 [node name="SpeedLabel" type="Label" parent="LinearUI/SpeedVbox/LabelHbox"]
 layout_mode = 2
-text = "Speed
+text = "Speed:
 "
 
 [node name="SpeedLabelValue" type="Label" parent="LinearUI/SpeedVbox/LabelHbox"]
@@ -108,7 +108,7 @@ layout_mode = 2
 
 [node name="FireRateLabel" type="Label" parent="LinearUI/FireRateVbox/LabelHbox"]
 layout_mode = 2
-text = "Fire rate"
+text = "Fire rate:"
 
 [node name="FireRateLabelValue" type="Label" parent="LinearUI/FireRateVbox/LabelHbox"]
 layout_mode = 2
@@ -119,11 +119,6 @@ min_value = 0.009
 max_value = 1.0
 step = 0.001
 value = 0.999
-
-[node name="RotateButton" type="Button" parent="LinearUI"]
-layout_mode = 2
-toggle_mode = true
-text = "Rotate"
 
 [node name="SineUI" type="VBoxContainer" parent="."]
 visible = false
@@ -280,24 +275,24 @@ text = "Lifespan"
 layout_mode = 2
 
 [node name="EnemyMovementPatterns" type="VBoxContainer" parent="."]
-offset_left = 1064.0
+offset_left = 1072.0
 offset_top = 256.0
-offset_right = 1274.0
-offset_bottom = 303.0
+offset_right = 1266.0
+offset_bottom = 392.0
 script = ExtResource("4_kybew")
 
-[node name="CenterContainer2" type="CenterContainer" parent="EnemyMovementPatterns"]
+[node name="LabelCenterContainer" type="CenterContainer" parent="EnemyMovementPatterns"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EnemyMovementPatterns/CenterContainer2"]
+[node name="Label" type="Label" parent="EnemyMovementPatterns/LabelCenterContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "Enemy Movement Patterns"
 
-[node name="CenterContainer" type="CenterContainer" parent="EnemyMovementPatterns"]
+[node name="OptionButtonContainer" type="CenterContainer" parent="EnemyMovementPatterns"]
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="EnemyMovementPatterns/CenterContainer"]
+[node name="OptionButton" type="OptionButton" parent="EnemyMovementPatterns/OptionButtonContainer"]
 layout_mode = 2
 item_count = 4
 popup/item_0/text = "Still"
@@ -309,12 +304,41 @@ popup/item_2/id = 2
 popup/item_3/text = "Circular"
 popup/item_3/id = 3
 
+[node name="RotationLabels" type="HBoxContainer" parent="EnemyMovementPatterns"]
+layout_mode = 2
+
+[node name="RotationMagnitudeLabel" type="Label" parent="EnemyMovementPatterns/RotationLabels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Rotation Magnitude: "
+
+[node name="RotationValue" type="Label" parent="EnemyMovementPatterns/RotationLabels"]
+layout_mode = 2
+
+[node name="RotationSlider" type="HSlider" parent="EnemyMovementPatterns"]
+layout_mode = 2
+max_value = 40.0
+value = 20.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EnemyMovementPatterns"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RotateButton" type="Button" parent="EnemyMovementPatterns/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Rotate"
+
+[node name="FlipButton" type="Button" parent="EnemyMovementPatterns/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Flip"
+
 [connection signal="pressed" from="BulletType/CenterContainer/LinearButton" to="." method="_on_linear_button_pressed"]
 [connection signal="pressed" from="BulletType/CenterContainer2/SineButton" to="." method="_on_sine_button_pressed"]
 [connection signal="pressed" from="BulletType/CenterContainer3/ParabolicButton" to="." method="_on_parabolic_button_pressed"]
 [connection signal="value_changed" from="LinearUI/SpeedVbox/SpeedSlider" to="." method="_on_speed_slider_value_changed"]
 [connection signal="value_changed" from="LinearUI/FireRateVbox/FireRateSlider" to="." method="_on_fire_rate_slider_value_changed"]
-[connection signal="toggled" from="LinearUI/RotateButton" to="." method="_on_rotate_button_toggled"]
 [connection signal="value_changed" from="SineUI/AmplitudeVbox/AmplitudeSlider" to="." method="_on_amplitude_slider_value_changed"]
 [connection signal="value_changed" from="SineUI/FrequencyVbox/FrequencySlider" to="." method="_on_frequency_slider_value_changed"]
 [connection signal="value_changed" from="ParabolicUI/CoeffAVbox/CoeffASlider" to="." method="_on_coeff_a_slider_value_changed"]
@@ -322,4 +346,7 @@ popup/item_3/id = 3
 [connection signal="value_changed" from="ParabolicUI/ConstCVbox/ConstCSlider" to="." method="_on_const_c_slider_value_changed"]
 [connection signal="toggled" from="BaseBulletUI/BaseBulletCenterContainer/ButtonHBox/DecelerationButton" to="." method="_on_deceleration_button_toggled"]
 [connection signal="toggled" from="BaseBulletUI/BaseBulletCenterContainer/ButtonHBox/LifespanButton" to="." method="_on_lifespan_button_toggled"]
-[connection signal="item_selected" from="EnemyMovementPatterns/CenterContainer/OptionButton" to="EnemyMovementPatterns" method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="EnemyMovementPatterns/OptionButtonContainer/OptionButton" to="EnemyMovementPatterns" method="_on_option_button_item_selected"]
+[connection signal="value_changed" from="EnemyMovementPatterns/RotationSlider" to="." method="_on_rotation_slider_value_changed"]
+[connection signal="toggled" from="EnemyMovementPatterns/HBoxContainer/RotateButton" to="." method="_on_rotate_button_toggled"]
+[connection signal="toggled" from="EnemyMovementPatterns/HBoxContainer/FlipButton" to="." method="_on_flip_button_toggled"]

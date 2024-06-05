@@ -52,3 +52,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func check_lifetime():
 	if is_lifetime and time > life_time:
 		queue_free()
+
+
+func _on_body_entered(body):
+	queue_free()
+	print("Hit")

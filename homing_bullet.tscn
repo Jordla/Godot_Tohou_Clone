@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://deabu1g8racil"]
+
+[ext_resource type="PackedScene" uid="uid://dvyn1aqa6xkvi" path="res://bullet.tscn" id="1_khoce"]
+[ext_resource type="Script" path="res://homing_bullet.gd" id="2_3spki"]
+[ext_resource type="Texture2D" uid="uid://ca1a8cr7cpsa2" path="res://TohouBulletSpriteSheet.png" id="3_basrs"]
+
+[node name="HomingBullet" instance=ExtResource("1_khoce")]
+script = ExtResource("2_3spki")
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = 1.5708
+texture = ExtResource("3_basrs")
+region_rect = Rect2(25, 134, 8, 16)

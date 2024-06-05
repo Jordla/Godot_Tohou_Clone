@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://8hg74jpaw74g"]
+
+[ext_resource type="Script" path="res://dummy_player.gd" id="1_lihfc"]
+[ext_resource type="Texture2D" uid="uid://de8metdv6atue" path="res://Companion_Cube.jpg" id="1_od6cq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3ol4"]
+size = Vector2(36, 36)
+
+[node name="DummyPlayer" type="CharacterBody2D"]
+script = ExtResource("1_lihfc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_od6cq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k3ol4")

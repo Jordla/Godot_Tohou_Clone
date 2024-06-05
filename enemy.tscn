@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2uii"]
 size = Vector2(98, 130)
 
-[node name="Enemy" type="Area2D"]
+[node name="Enemy" type="Area2D" groups=["EnemyGroup"]]
 script = ExtResource("1_t782f")
 LinearBullet = ExtResource("2_gn7x7")
 SineBullet = ExtResource("3_13u6e")
