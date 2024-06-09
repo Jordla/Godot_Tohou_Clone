@@ -1,5 +1,7 @@
 extends Bullet
 
+class_name ParabolicBullet
+
 var coefficient_a : float = 1.0
 var coefficient_b : float = 0.0
 var constant_c : float = 0.0

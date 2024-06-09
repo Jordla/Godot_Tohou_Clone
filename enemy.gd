@@ -5,6 +5,8 @@ class_name Enemy
 @export var LinearBullet : PackedScene
 @export var SineBullet : PackedScene
 @export var ParabolicBullet : PackedScene
+@export var HomingBullet : PackedScene
+@export var TriangleBullet : PackedScene
 @onready var enemy = $"."
 @onready var line_2d = $Line2D
 
@@ -14,6 +16,7 @@ var rotate_value : float
 var rotated : float
 var current_bullet : PackedScene = null
 var is_rotate : bool = false
+var original_positon : Vector2
 
 
 signal shoot(Bullet : PackedScene, location : Transform2D)
@@ -25,7 +28,10 @@ func _ready():
 	Events.linear_bullet_selected.connect(select_linear)
 	Events.sine_bullet_selected.connect(select_sine)
 	Events.parabolic_bullet_selected.connect(select_parabolic)
+	Events.homing_bullet_selected.connect(select_homing)
+	Events.triangle_bullet_selected.connect(select_triangle)
 	Events.rotate_changed.connect(check_rotate)
+	original_positon = global_position 
 
 func select_linear():
 	current_bullet = LinearBullet
@@ -35,6 +41,12 @@ func select_sine():
 	
 func select_parabolic():
 	current_bullet = ParabolicBullet
+
+func select_homing():
+	current_bullet = HomingBullet
+
+func select_triangle():
+	current_bullet = TriangleBullet
 
 func set_rotated(value):
 	rotate_value = value

@@ -5,9 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://ca1a8cr7cpsa2" path="res://TohouBulletSpriteSheet.png" id="3_basrs"]
 
 [node name="HomingBullet" instance=ExtResource("1_khoce")]
+scale = Vector2(1.4, 1.4)
 script = ExtResource("2_3spki")
 
 [node name="Sprite2D" parent="." index="0"]
 rotation = 1.5708
+scale = Vector2(2, 2)
 texture = ExtResource("3_basrs")
-region_rect = Rect2(25, 134, 8, 16)
+region_rect = Rect2(25, 135, 8, 15)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(5.0822e-21, -1.13687e-13)
+rotation = 1.5708
+scale = Vector2(1.4, 1.4)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(-2.38419e-07, 4.76837e-07)
+scale = Vector2(1.14286, 0.571429)

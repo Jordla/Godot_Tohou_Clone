@@ -8,7 +8,6 @@ extends Node2D
 func _ready():
 	homing_bullet.start(marker_2d.transform, dummy_player)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

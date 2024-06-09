@@ -1,5 +1,7 @@
 extends Bullet
 
+class_name SineBullet
+
 var frequency : float = 4.0
 var amplitude : float = 25.0
 

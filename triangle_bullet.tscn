@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5csfko4yv1l0"]
+
+[ext_resource type="PackedScene" uid="uid://dvyn1aqa6xkvi" path="res://bullet.tscn" id="1_djar0"]
+[ext_resource type="Script" path="res://triangle_bullet.gd" id="2_q25xv"]
+
+[node name="TriangleBullet" instance=ExtResource("1_djar0")]
+script = ExtResource("2_q25xv")

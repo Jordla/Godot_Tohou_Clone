@@ -3,10 +3,17 @@ extends CanvasLayer
 @onready var linear_button = %LinearButton
 @onready var sine_button = %SineButton
 @onready var parabolic_button = %ParabolicButton
+@onready var homing_bullet_button = %HomingBulletButton
+@onready var triangle_bullet_button = %TriangleBulletButton
+
 
 @onready var linear_ui = $LinearUI
 @onready var sine_ui = $SineUI
 @onready var parabolic_ui = $ParabolicUI
+@onready var homing_ui = $HomingUI
+@onready var triangle_ui = $TriangleUI
+
+
 
 @onready var base_bullet_settings = $BaseBulletUI/BaseBulletSettings
 
@@ -15,13 +22,12 @@ extends CanvasLayer
 @onready var amplitdue_label_value = $SineUI/AmplitudeVbox/LabelHbox/AmplitdueLabelValue
 @onready var frequency_label_value = $SineUI/FrequencyVbox/LabelHbox/FrequencyLabelValue
 
-
-
 @onready var a_label_value = $ParabolicUI/CoeffAVbox/LabelHbox/ALabelValue
 @onready var b_label_value = $ParabolicUI/CoeffBVbox/LabelHbox/BLabelValue
 @onready var c_label_value = $ParabolicUI/ConstCVbox/LabelHbox/CLabelValue
 
 @onready var rotation_value = $EnemyMovementPatterns/RotationLabels/RotationValue
+@onready var steer_force_value_label = $HomingUI/VBoxContainer/SteeringLabelContainer/SteerForceValueLabel
 
 @export var deceleration_ui : PackedScene
 @export var lifespan_ui : PackedScene
@@ -41,11 +47,12 @@ signal lifespan_changed(seconds)
 signal deceleration_toggled(toggled)
 signal lifespan_toggled(toggled)
 signal rotation_value_changed(value)
+signal steer_force_changed(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	linear_button.grab_focus()
-	bullet_types = [linear_ui, sine_ui, parabolic_ui]
+	bullet_types = [linear_ui, sine_ui, parabolic_ui, homing_ui, triangle_ui]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -80,6 +87,20 @@ func _on_parabolic_button_pressed():
 	parabolic_ui.show()
 	Events.current_bullet = Events.bullet_array[2]
 	Events.parabolic_bullet_selected.emit()
+
+func _on_homing_bullet_button_pressed():
+	for bullet_type in bullet_types: 
+		bullet_type.hide()
+	homing_ui.show()
+	Events.current_bullet = Events.bullet_array[3]
+	Events.homing_bullet_selected.emit()
+
+func _on_triangle_bullet_button_pressed():
+	for bullet_type in bullet_types: 
+		bullet_type.hide()
+	triangle_ui.show()
+	Events.current_bullet = Events.bullet_array[4]
+	Events.triangle_bullet_selected.emit()
 
 func _on_amplitude_slider_value_changed(value):
 	amplitude_changed.emit(value)
@@ -149,3 +170,12 @@ func _on_flip_button_toggled(toggled_on):
 		Events.flipped = -1
 	else:
 		Events.flipped = 1
+
+func _on_steer_force_slider_value_changed(value):
+	steer_force_changed.emit(value)
+	steer_force_value_label.text = str(value)
+
+
+func _on_ui_area_2d_area_entered(area):
+	if area.is_in_group("Bullets"):
+		area.queue_free()

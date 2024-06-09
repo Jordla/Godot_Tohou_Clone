@@ -19,6 +19,9 @@ var slider_ease_curve : float = 1.0
 var spinner_lifetime : float
 var is_deceleration_active : bool = false
 var is_lifespan_active : bool = false
+var slider_steer_force : float
+
+@export var player_dummy : PackedScene
 
 
 # Called when the node enters the scene tree for the first time.
@@ -36,12 +39,23 @@ func _ready():
 	ui.deceleration_toggled.connect(set_deceleration_state)
 	ui.lifespan_toggled.connect(set_lifespan_state)
 	ui.rotation_value_changed.connect(set_rotation_value)
+	ui.steer_force_changed.connect(set_steer_force)
 	Events.fire.connect(fire_bullet)
 	enemy_movement_patterns.path_selected.connect(set_path)
+	Events.homing_bullet_selected.connect(spawn_player)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	#print(str(Events.player_instance))
 	pass
+
+func _process(delta):
+	if Events.current_bullet != "homing" and Events.player_instance != null:
+		get_node("DummyPlayer").queue_free()
+	# Not homing and player not null
+	# queue free player_instance
+
+	# Homing selected, player_instance should be not null, select different bullet --> not homing but player_instance is still there --> queue_free() so that player_instance is null
 
 func _input(event):
 	if Input.is_action_just_pressed("bomb"):
@@ -86,6 +100,9 @@ func set_lifespan_state(toggled):
 func set_rotation_value(value):
 	enemy.set_rotated(value)
 
+func set_steer_force(value):
+	slider_steer_force = value
+
 # Create a bullet instance
 func fire_bullet(Bullet : PackedScene, location : Transform2D):
 	var bullet = Bullet.instantiate()
@@ -99,6 +116,12 @@ func fire_bullet(Bullet : PackedScene, location : Transform2D):
 		bullet.coefficient_a = slider_a
 		bullet.coefficient_b = slider_b
 		bullet.constant_c = slider_c
+	elif Events.current_bullet == "homing":
+		bullet.home_onto(Events.player_instance)
+		bullet.steer_force = slider_steer_force
+		bullet.speed = slider_speed
+	elif Events.current_bullet == "triangle":
+		pass
 	bullet.set_decelerate(is_deceleration_active)
 	if is_deceleration_active:
 		bullet.deceleration = slider_deceleration
@@ -107,10 +130,19 @@ func fire_bullet(Bullet : PackedScene, location : Transform2D):
 	if is_lifespan_active:
 		bullet.life_time = spinner_lifetime
 	add_child(bullet)
+	
 
 func set_path(path_str):
 	path_2d.set_path(path_str)
 
-	
+func spawn_player(): # Maybe make a seperate button to spawn a player (toggled) - In the homing UI/ Save initial enemy positon
+	# Set player positon to a global positon relative to enemy starting global position
+	# Also code in a feature to reset enenmy positon back to original
+	# Figure out global positon from marker2D or use marker 2D as placeholder positions to spawn from 
+	var new_player = player_dummy.instantiate()
+	new_player.global_position = Vector2(896.0, 320.0) # Need to figure out where to spawn player instance
+	Events.player_instance = new_player
+	add_child(new_player)
+	# Add reference to singleton 
 
 

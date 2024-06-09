@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4awpy5vho2jb"]
+[gd_scene load_steps=9 format=3 uid="uid://d4awpy5vho2jb"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_t782f"]
 [ext_resource type="PackedScene" uid="uid://bgtiq6v4nklhk" path="res://linear_bullet.tscn" id="2_gn7x7"]
 [ext_resource type="PackedScene" uid="uid://dd6dwgnm5rg3l" path="res://sine_bullet.tscn" id="3_13u6e"]
 [ext_resource type="PackedScene" uid="uid://dqtya6fsnkvs7" path="res://parabolic_bullet.tscn" id="4_amlig"]
 [ext_resource type="Texture2D" uid="uid://0xcb2n54g7jd" path="res://Mungus2.webp" id="4_y74i1"]
+[ext_resource type="PackedScene" uid="uid://deabu1g8racil" path="res://homing_bullet.tscn" id="5_ix5a6"]
+[ext_resource type="PackedScene" uid="uid://c5csfko4yv1l0" path="res://triangle_bullet.tscn" id="6_oojnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2uii"]
 size = Vector2(98, 130)
@@ -14,6 +16,8 @@ script = ExtResource("1_t782f")
 LinearBullet = ExtResource("2_gn7x7")
 SineBullet = ExtResource("3_13u6e")
 ParabolicBullet = ExtResource("4_amlig")
+HomingBullet = ExtResource("5_ix5a6")
+TriangleBullet = ExtResource("6_oojnj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-16, 24)
