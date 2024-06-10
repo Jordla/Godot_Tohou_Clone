@@ -6,21 +6,27 @@ var acceleration = Vector2.ZERO
 var steer_force = 50.0
 var rng = RandomNumberGenerator.new()
 var target = null
-var first : bool = true
+var homing_time : float = 1
+var linear_time: float = 0.1
 var random_number : float
+var is_homing : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	speed = 750.0
+	#speed = 250.0
+	rotation = velocity.angle()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if target != null:
+	if is_homing and target != null:
 		acceleration += seek() # Add Vector2 and prev acceleration to current acceleration
-	velocity += acceleration * delta # Increase the velocity by the acceleration and multiply by delta to standardize into pixel units travelled
-	velocity = velocity.limit_length(speed) # Cap the velocity 
-	# angle() returns rotation in radians as a float, velocity is some 2D vector that has been rotated from (1,0)
-	rotation = velocity.angle() # Rotate the bullet to match the velocity direction
+		velocity += acceleration * delta # Increase the velocity by the acceleration and multiply by delta to standardize into pixel units travelled
+		velocity = velocity.limit_length(speed) # Cap the velocity 
+		# angle() returns rotation in radians as a float, velocity is some 2D vector that has been rotated from (1,0)
+		rotation = velocity.angle() # Rotate the bullet to match the velocity direction
 	position += velocity * delta # Update the position of the bullet
+	super(delta)
+	
+		
 
 # Do we need this function/Only needed for a toggleable homing feature
 func start(_transform, _target): # Called when you want to home onto a desired target
@@ -47,6 +53,9 @@ func home_onto(_target):
 func seek():
 	var steer = Vector2.ZERO
 	if target:
-		var desired = (target.position - position).normalized() * speed
-		steer = (desired - velocity) * steer_force
+		if (target.position - position).length() < 100:
+			is_homing = false
+		else:
+			var desired = (target.position - position).normalized() * speed
+			steer = (desired - velocity).normalized() * steer_force
 	return steer

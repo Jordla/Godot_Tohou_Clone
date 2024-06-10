@@ -282,8 +282,7 @@ layout_mode = 2
 
 [node name="SteerForceSlider" type="HSlider" parent="HomingUI/VBoxContainer"]
 layout_mode = 2
-max_value = 1500.0
-step = 100.0
+step = 5.0
 
 [node name="TriangleUI" type="VBoxContainer" parent="."]
 visible = false
