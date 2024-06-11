@@ -19,7 +19,7 @@ var decelerate_value : float = 0.0
 func _physics_process(delta):
 	time += delta
 	check_lifetime()
-	#velocity_is_zero()
+	velocity_is_zero()
 
 func get_x_velocity(delta, is_decelerate): # in the x direction
 	var x_velocity = speed * (1 - eased_value) * delta
