@@ -25,9 +25,3 @@ func get_velocity(delta):
 			get_x_velocity(delta, is_decelerate), 
 			part_a * part_c - amplitude
 )
-
-func get_velocity_2(delta):
-	velocity = Vector2(
-			get_x_velocity(delta, is_decelerate),
-			(amplitude/period) * (period - abs(int(time * 100) % (2 * period) - period))
-)

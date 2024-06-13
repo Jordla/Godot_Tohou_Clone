@@ -4,6 +4,7 @@ extends Node2D
 @onready var path_2d = $Path2D
 @onready var enemy_movement_patterns = $UI/EnemyMovementPatterns
 @onready var enemy = $Path2D/PathFollow2D/Enemy
+@onready var new_bullet_factory = LinearBulletFactory.new()
 
 #var ui = preload("res://ui.tscn")
 
@@ -43,6 +44,8 @@ func _ready():
 	Events.fire.connect(fire_bullet)
 	enemy_movement_patterns.path_selected.connect(set_path)
 	Events.homing_bullet_selected.connect(spawn_player)
+	Events.spawn_child.connect(spawn_child)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -144,5 +147,9 @@ func spawn_player(): # Maybe make a seperate button to spawn a player (toggled) 
 	Events.player_instance = new_player
 	add_child(new_player)
 	# Add reference to singleton 
+
+func spawn_child(transform):
+	var new_bullet_child = new_bullet_factory.create_child(10, transform, true, 0.5, false)
+	add_child(new_bullet_child)
 
 

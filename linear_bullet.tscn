@@ -66,6 +66,7 @@ _data = {
 
 [node name="LinearBullet" instance=ExtResource("1_08chh")]
 script = ExtResource("2_vtnf7")
+linear = null
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(1.4, 1.4)
@@ -77,3 +78,8 @@ region_rect = Rect2(118, 55, 31, 15)
 libraries = {
 "": SubResource("AnimationLibrary_vkhgj")
 }
+
+[node name="SpawnTimer" type="Timer" parent="." index="4"]
+wait_time = 0.2
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

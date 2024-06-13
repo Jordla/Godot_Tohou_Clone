@@ -16,6 +16,7 @@ func _physics_process(delta):
 	apply_rotation_transformation(velocity.x, velocity.y, get_rotation())
 	position += velocity
 	super(delta)
+	print(str(transform.x))
 
 func get_velocity(delta):
 	velocity = Vector2(

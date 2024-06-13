@@ -11,24 +11,26 @@ var deceleration : float
 var ease_curve : float
 var eased_value : float
 var life_time: float = 1.0 
+# Are checks for the button toggles
 var is_decelerate : bool = false
 var is_lifetime : bool = false
 
 var decelerate_value : float = 0.0
+
+# Speed * transform to get velocity 
+# Multiply by delta when added to position
 
 func _physics_process(delta):
 	time += delta
 	check_lifetime()
 	velocity_is_zero()
 
+
 func get_x_velocity(delta, is_decelerate): # in the x direction
 	var x_velocity = speed * (1 - eased_value) * delta
 	if is_decelerate:
 		eased()
 	return x_velocity
-
-func move_bullet_x(delta): # Effected by rotation
-	position += transform.x * velocity.x
 
 func eased():
 	eased_value = ease(time / life_time, ease_curve)
@@ -57,3 +59,15 @@ func check_lifetime():
 func _on_body_entered(body):
 	queue_free()
 	print("Hit")
+	
+static func make_child():
+	pass
+	# transform 
+	# velocity 
+	# 
+
+func trail():
+	pass
+
+func explode():
+	pass
