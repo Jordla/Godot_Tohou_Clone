@@ -9,6 +9,7 @@ signal rotate_changed(toggled_on)
 signal fire(current_bullet : PackedScene, position : Transform2D)
 
 signal spawn_child(_transform, _global_position)
+signal explode(_transform, _global_position)
 
 var bullet_array = ["linear", "sine", "parabolic", "homing", "triangle"]
 var current_bullet = bullet_array[0]

@@ -44,6 +44,7 @@ func _ready():
 	enemy_movement_patterns.path_selected.connect(set_path)
 	Events.homing_bullet_selected.connect(spawn_player)
 	Events.spawn_child.connect(spawn_child)
+	Events.explode.connect(spawn_explosion)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -148,7 +149,15 @@ func spawn_player(): # Maybe make a seperate button to spawn a player (toggled) 
 # Have each bullet emit the same signal 
 # Call different constructor methods depending on the selected bullet
 func spawn_child(bullet_transform, bullet_global_position):
-	var new_bullet_child = new_bullet_factory.create_child(50, bullet_transform, bullet_global_position, true, 0.8, false)
+	var new_bullet_child = new_bullet_factory.create_child(50, bullet_transform, bullet_global_position, true, 0.8, false, false)
 	add_child(new_bullet_child)
 
+func spawn_explosion(bullet_transform, bullet_global_position):
+	var counter = 0
+	for num in range(12):
+		var new_bullet_child = new_bullet_factory.create_child(400, bullet_transform, bullet_global_position, true, 4, false, false)
+		new_bullet_child.transform = new_bullet_child.transform.rotated_local(counter)
+		counter += PI/6
+		add_child(new_bullet_child)
+	
 

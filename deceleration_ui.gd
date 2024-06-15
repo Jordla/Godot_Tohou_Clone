@@ -1,7 +1,7 @@
 extends VBoxContainer
+
 @onready var ease_value = $EaseVbox/HBoxContainer/EaseValue
 @onready var ease_slider = $EaseVbox/EaseSlider
-
 
 
 # Called when the node enters the scene tree for the first time.

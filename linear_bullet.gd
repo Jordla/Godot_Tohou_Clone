@@ -7,7 +7,7 @@ class_name LinearBullet
 @export var linear : PackedScene
 
 
-var spawn_children : bool = true
+var spawn_children : bool = false
 var bullet_scale = scale
 signal spawn_child
 

@@ -14,6 +14,7 @@ var life_time: float = 1.0
 # Are checks for the button toggles
 var is_decelerate : bool = false
 var is_lifetime : bool = false
+var is_explosive : bool = true
 
 # Speed * transform to get velocity 
 # Multiply by delta when added to position
@@ -67,5 +68,7 @@ static func make_child():
 func trail():
 	pass
 
-func explode():
-	pass
+
+func _on_tree_exited():
+	if is_explosive:
+		Events.explode.emit(transform, global_position)
