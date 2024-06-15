@@ -6,6 +6,7 @@ extends Node2D
 @onready var enemy = $Path2D/PathFollow2D/Enemy
 @onready var new_bullet_factory = LinearBulletFactory.new()
 
+
 #var ui = preload("res://ui.tscn")
 
 var slider_frequency : float
@@ -15,7 +16,6 @@ var slider_fire_rate : float = 1.0
 var slider_a : float
 var slider_b : float
 var slider_c : float
-var slider_deceleration : float
 var slider_ease_curve : float = 1.0
 var spinner_lifetime : float
 var is_deceleration_active : bool = false
@@ -34,7 +34,6 @@ func _ready():
 	ui.coefficient_a_changed.connect(set_a)
 	ui.coefficient_b_changed.connect(set_b)
 	ui.constant_c_changed.connect(set_c)
-	ui.deceleration_changed.connect(set_deceleration)
 	ui.ease_curve_changed.connect(set_ease_curve)
 	ui.lifespan_changed.connect(set_lifetime)
 	ui.deceleration_toggled.connect(set_deceleration_state)
@@ -85,9 +84,6 @@ func set_b(b):
 func set_c(c):
 	slider_c = c
 
-func set_deceleration(deceleration):
-	slider_deceleration = deceleration
-
 func set_ease_curve(ease_curve):
 	slider_ease_curve = ease_curve
 
@@ -127,13 +123,12 @@ func fire_bullet(Bullet : PackedScene, location : Transform2D):
 		pass
 	bullet.set_decelerate(is_deceleration_active)
 	if is_deceleration_active:
-		bullet.deceleration = slider_deceleration
 		bullet.ease_curve = slider_ease_curve
 	bullet.set_lifetime(is_lifespan_active)
 	if is_lifespan_active:
 		bullet.life_time = spinner_lifetime
 	add_child(bullet)
-	
+
 
 func set_path(path_str):
 	path_2d.set_path(path_str)
@@ -148,8 +143,12 @@ func spawn_player(): # Maybe make a seperate button to spawn a player (toggled) 
 	add_child(new_player)
 	# Add reference to singleton 
 
-func spawn_child(transform):
-	var new_bullet_child = new_bullet_factory.create_child(10, transform, true, 0.5, false)
+
+# Want to handle child bullets similar to spawning parent bullets 
+# Have each bullet emit the same signal 
+# Call different constructor methods depending on the selected bullet
+func spawn_child(bullet_transform, bullet_global_position):
+	var new_bullet_child = new_bullet_factory.create_child(50, bullet_transform, bullet_global_position, true, 0.8, false)
 	add_child(new_bullet_child)
 
 

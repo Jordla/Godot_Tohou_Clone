@@ -14,23 +14,6 @@ offset_right = 0.319946
 offset_bottom = -0.23999
 script = ExtResource("1_jiis7")
 
-[node name="DecelerationVbox" type="VBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DecelerationVbox"]
-layout_mode = 2
-
-[node name="DecelerationLabel" type="Label" parent="DecelerationVbox/HBoxContainer"]
-layout_mode = 2
-text = "Deceleration:"
-
-[node name="DecelerationValue" type="Label" parent="DecelerationVbox/HBoxContainer"]
-layout_mode = 2
-
-[node name="DecelerationSlider" type="HSlider" parent="DecelerationVbox"]
-layout_mode = 2
-max_value = 20.0
-
 [node name="EaseVbox" type="VBoxContainer" parent="."]
 layout_mode = 2
 
@@ -38,8 +21,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="EaseLabel" type="Label" parent="EaseVbox/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Easing Curve:"
+theme_override_font_sizes/font_size = 12
+text = "Deceleration Easing Curve:"
+autowrap_mode = 2
 
 [node name="EaseValue" type="Label" parent="EaseVbox/HBoxContainer"]
 layout_mode = 2
@@ -52,5 +38,4 @@ max_value = 5.0
 step = 0.2
 value = 1.0
 
-[connection signal="value_changed" from="DecelerationVbox/DecelerationSlider" to="." method="_on_deceleration_slider_value_changed"]
 [connection signal="value_changed" from="EaseVbox/EaseSlider" to="." method="_on_ease_slider_value_changed"]

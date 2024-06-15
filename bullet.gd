@@ -15,8 +15,6 @@ var life_time: float = 1.0
 var is_decelerate : bool = false
 var is_lifetime : bool = false
 
-var decelerate_value : float = 0.0
-
 # Speed * transform to get velocity 
 # Multiply by delta when added to position
 

@@ -8,6 +8,7 @@ class_name LinearBullet
 
 
 var spawn_children : bool = true
+var bullet_scale = scale
 signal spawn_child
 
 # Called when the node enters the scene tree for the first time.
@@ -30,5 +31,4 @@ func start_timer():
 
 
 func _on_spawn_timer_timeout():
-	Events.spawn_child.emit(transform)
-
+	Events.spawn_child.emit(transform, global_position)

@@ -143,7 +143,6 @@ func _on_deceleration_button_toggled(toggled_on):
 	if toggled_on:
 		var deceleration_ui_instance = deceleration_ui.instantiate()
 		base_bullet_settings.add_child(deceleration_ui_instance)
-		deceleration_ui_instance.deceleration_slider.value_changed.connect(_on_deceleration_slider_value_changed)
 		deceleration_ui_instance.ease_slider.value_changed.connect(_on_ease_slider_value_changed)
 	elif not toggled_on:
 		base_bullet_settings.get_node("DecelerationUI").queue_free()
