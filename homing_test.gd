@@ -10,5 +10,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	var new_bullet = new_bullet_factory.create_child(400, marker_2d.transform, true, 1.0, false)
+	var new_bullet = new_bullet_factory.create_child(400, marker_2d.transform, true, 1.0, false, false)
 	add_child(new_bullet)

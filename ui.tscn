@@ -293,12 +293,12 @@ offset_bottom = 40.0
 anchors_preset = -1
 anchor_left = 0.844
 anchor_top = 0.622
-anchor_right = 0.981
+anchor_right = 0.987
 anchor_bottom = 0.978
-offset_left = -0.320068
+offset_left = -3.31995
 offset_top = 0.159973
-offset_right = 0.319946
-offset_bottom = -0.160034
+offset_right = -1.36011
+offset_bottom = -0.159973
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 30
@@ -306,6 +306,22 @@ theme_override_constants/separation = 30
 [node name="BaseBulletLabel" type="Label" parent="BaseBulletUI"]
 layout_mode = 2
 text = "BaseBullet"
+
+[node name="CenterContainer" type="CenterContainer" parent="BaseBulletUI"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BaseBulletUI/CenterContainer"]
+layout_mode = 2
+
+[node name="TrailButton" type="Button" parent="BaseBulletUI/CenterContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Make Trail"
+
+[node name="ExplodeButton" type="Button" parent="BaseBulletUI/CenterContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Explode"
 
 [node name="BaseBulletCenterContainer" type="CenterContainer" parent="BaseBulletUI"]
 layout_mode = 2
@@ -400,6 +416,8 @@ text = "Flip"
 [connection signal="value_changed" from="ParabolicUI/CoeffBVbox/CoeffBSlider" to="." method="_on_coeff_b_slider_value_changed"]
 [connection signal="value_changed" from="ParabolicUI/ConstCVbox/ConstCSlider" to="." method="_on_const_c_slider_value_changed"]
 [connection signal="value_changed" from="HomingUI/VBoxContainer/SteerForceSlider" to="." method="_on_steer_force_slider_value_changed"]
+[connection signal="toggled" from="BaseBulletUI/CenterContainer/HBoxContainer/TrailButton" to="." method="_on_trail_button_toggled"]
+[connection signal="toggled" from="BaseBulletUI/CenterContainer/HBoxContainer/ExplodeButton" to="." method="_on_explode_button_toggled"]
 [connection signal="toggled" from="BaseBulletUI/BaseBulletCenterContainer/ButtonHBox/DecelerationButton" to="." method="_on_deceleration_button_toggled"]
 [connection signal="toggled" from="BaseBulletUI/BaseBulletCenterContainer/ButtonHBox/LifespanButton" to="." method="_on_lifespan_button_toggled"]
 [connection signal="item_selected" from="EnemyMovementPatterns/OptionButtonContainer/OptionButton" to="EnemyMovementPatterns" method="_on_option_button_item_selected"]

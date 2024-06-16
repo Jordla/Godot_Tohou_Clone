@@ -48,6 +48,8 @@ signal deceleration_toggled(toggled)
 signal lifespan_toggled(toggled)
 signal rotation_value_changed(value)
 signal steer_force_changed(value)
+signal explode_toggled(toggled_on)
+signal make_trail_toggled(toggled_on)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -178,3 +180,11 @@ func _on_steer_force_slider_value_changed(value):
 func _on_ui_area_2d_area_entered(area):
 	if area.is_in_group("Bullets"):
 		area.queue_free()
+
+
+func _on_explode_button_toggled(toggled_on):
+	explode_toggled.emit(toggled_on)
+
+
+func _on_trail_button_toggled(toggled_on):
+	make_trail_toggled.emit(toggled_on)

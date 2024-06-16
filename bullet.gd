@@ -14,7 +14,7 @@ var life_time: float = 1.0
 # Are checks for the button toggles
 var is_decelerate : bool = false
 var is_lifetime : bool = false
-var is_explosive : bool = true
+var is_explosive : bool = false
 
 # Speed * transform to get velocity 
 # Multiply by delta when added to position
@@ -57,16 +57,6 @@ func check_lifetime():
 
 func _on_body_entered(body):
 	queue_free()
-	print("Hit")
-	
-static func make_child():
-	pass
-	# transform 
-	# velocity 
-	# 
-
-func trail():
-	pass
 
 
 func _on_tree_exited():

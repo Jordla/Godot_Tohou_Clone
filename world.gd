@@ -21,6 +21,8 @@ var spinner_lifetime : float
 var is_deceleration_active : bool = false
 var is_lifespan_active : bool = false
 var slider_steer_force : float
+var is_trail_active : bool = false
+var is_explosion_active : bool = false
 
 @export var player_dummy : PackedScene
 
@@ -40,6 +42,8 @@ func _ready():
 	ui.lifespan_toggled.connect(set_lifespan_state)
 	ui.rotation_value_changed.connect(set_rotation_value)
 	ui.steer_force_changed.connect(set_steer_force)
+	ui.make_trail_toggled.connect(toggle_trail)
+	ui.explode_toggled.connect(toggle_explosion)
 	Events.fire.connect(fire_bullet)
 	enemy_movement_patterns.path_selected.connect(set_path)
 	Events.homing_bullet_selected.connect(spawn_player)
@@ -128,8 +132,10 @@ func fire_bullet(Bullet : PackedScene, location : Transform2D):
 	bullet.set_lifetime(is_lifespan_active)
 	if is_lifespan_active:
 		bullet.life_time = spinner_lifetime
+	bullet.is_explosive = is_explosion_active
 	add_child(bullet)
-
+	if Events.current_bullet == "linear" and is_trail_active: # This check is temporary fix for making a bullet trail
+		bullet.start_timer()
 
 func set_path(path_str):
 	path_2d.set_path(path_str)
@@ -144,6 +150,8 @@ func spawn_player(): # Maybe make a seperate button to spawn a player (toggled) 
 	add_child(new_player)
 	# Add reference to singleton 
 
+func toggle_trail(toggled_on):
+	is_trail_active = toggled_on
 
 # Want to handle child bullets similar to spawning parent bullets 
 # Have each bullet emit the same signal 
@@ -152,12 +160,17 @@ func spawn_child(bullet_transform, bullet_global_position):
 	var new_bullet_child = new_bullet_factory.create_child(50, bullet_transform, bullet_global_position, true, 0.8, false, false)
 	add_child(new_bullet_child)
 
+
+
+func toggle_explosion(toggle_on):
+	is_explosion_active = toggle_on
+	
 func spawn_explosion(bullet_transform, bullet_global_position):
 	var counter = 0
 	for num in range(12):
 		var new_bullet_child = new_bullet_factory.create_child(400, bullet_transform, bullet_global_position, true, 4, false, false)
 		new_bullet_child.transform = new_bullet_child.transform.rotated_local(counter)
 		counter += PI/6
-		add_child(new_bullet_child)
+		add_child.call_deferred(new_bullet_child)
 	
 
