@@ -31,6 +31,7 @@ shape = SubResource("RectangleShape2D_c2uii")
 [node name="Marker2D" type="Marker2D" parent="."]
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 points = PackedVector2Array(0, 0, 448, 0)
 width = 4.0
 default_color = Color(0, 0, 1, 1)

@@ -20,7 +20,7 @@ var slider_ease_curve : float = 1.0
 var spinner_lifetime : float
 var is_deceleration_active : bool = false
 var is_lifespan_active : bool = false
-var slider_steer_force : float
+var slider_steer_force : float = 20.0
 var is_trail_active : bool = false
 var is_explosion_active : bool = false
 

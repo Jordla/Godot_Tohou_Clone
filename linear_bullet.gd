@@ -13,11 +13,11 @@ signal spawn_child
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animation_player.play("glow_1")
-	if spawn_children == true:
-		spawn_timer.start()
-		print("started")
-	
+	#animation_player.play("glow_1")
+	#if spawn_children == true:
+		#spawn_timer.start()
+		#print("started")
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

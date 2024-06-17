@@ -2,9 +2,9 @@ extends Bullet
 
 class_name ParabolicBullet
 
-var coefficient_a : float = 1.0
-var coefficient_b : float = 0.0
-var constant_c : float = 0.0
+var coefficient_a : float = 1.0 # Compress: a < 1, stretch a > 1
+var coefficient_b : float = 0.0 # b > 0 shift right, b < 0 shift left
+var constant_c : float = 0.0 # vertical shift up and down
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
